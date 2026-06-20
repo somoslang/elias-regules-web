@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bodas &amp; Celebraciones — Elías Regules · Montevideo</title>
+<meta name="description" content="Casamientos, fiestas y celebraciones exclusivas en Elías Regules. Cinco hectáreas de naturaleza en Montevideo para el día más especial de tu vida." />
+<meta property="og:title" content="Bodas &amp; Celebraciones — Elías Regules" />
+<meta property="og:description" content="Casamientos y celebraciones exclusivas en 5 hectáreas de naturaleza. Un marco único en Montevideo para el día más especial." />
+<meta property="og:image" content="https://elias-regules.netlify.app/img/aerial-1.jpg" />
+<meta property="og:url" content="https://elias-regules.netlify.app/social.html" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ── BODAS v2 · moderno · con alma clásica ── */
+body { background: #fff; --paper: #fff; --line: rgba(0,0,0,.08); --text-soft: rgba(0,0,0,.5); --text-faint: rgba(0,0,0,.28); --accent: #2f6a45; }
+
+/* Serif utilitario */
+.bs { font-family: 'Cormorant Garamond', Georgia, serif; }
+.bs em { font-style: italic; color: var(--accent); }
+
+/* ── HERO full-bleed ── */
+.bs-hero { position: relative; height: 100svh; min-height: 580px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 80px; }
+.bs-hero-img { position: absolute; inset: 0; }
+.bs-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bs-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,8,5,.18) 0%, rgba(5,8,5,.82) 100%); }
+.bs-hero-copy { position: relative; text-align: center; padding: 0 32px; }
+.bs-hero-eyebrow { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 22px; }
+.bs-divider { width: 36px; height: 1px; background: rgba(255,255,255,.35); margin: 0 auto 26px; }
+.bs-h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(44px, 6.8vw, 90px); font-weight: 300; color: #fff; letter-spacing: -.02em; line-height: 1.02; max-width: 22ch; margin: 0 auto 20px; }
+.bs-h1 em { font-style: italic; color: rgba(255,255,255,.72); }
+.bs-hero-sub { color: rgba(255,255,255,.52); font-size: 16px; max-width: 44ch; margin: 0 auto 32px; line-height: 1.6; font-weight: 300; }
+
+/* ── INTRO quote ── */
+.bs-intro { padding: 72px 0 64px; text-align: center; border-bottom: 1px solid rgba(0,0,0,.08); }
+.bs-ornament { font-size: 18px; color: var(--accent); opacity: .35; letter-spacing: .5em; display: block; margin-bottom: 28px; }
+.bs-intro-q { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(22px, 3vw, 38px); font-weight: 400; color: #0d0d0d; line-height: 1.42; max-width: 34ch; margin: 0 auto; letter-spacing: -.01em; }
+.bs-intro-q em { font-style: italic; color: var(--accent); }
+
+/* ── TICKER ── */
+.bs-ticker { overflow: hidden; border-bottom: 1px solid rgba(0,0,0,.08); padding: 14px 0; background: #fff; }
+.bs-ticker-track { display: flex; width: max-content; animation: bs-tick 36s linear infinite; }
+.bs-ticker-seg { display: flex; white-space: nowrap; }
+.bs-ticker-item { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: rgba(0,0,0,.28); padding: 0 32px; }
+.bs-ticker-orn { font-size: 13px; color: var(--accent); opacity: .45; align-self: center; }
+@keyframes bs-tick { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ── FORMATOS horizontal ── */
+.bs-formats { border-top: 1px solid rgba(0,0,0,.08); }
+.bs-format { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.08); min-height: 380px; }
+.bs-format-photo { overflow: hidden; }
+.bs-format-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.6s cubic-bezier(.19,1,.22,1); }
+.bs-format:hover .bs-format-photo img { transform: scale(1.05); }
+.bs-format-copy { padding: 48px 56px; display: flex; flex-direction: column; justify-content: center; }
+.bs-format-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 80px; font-weight: 300; font-style: italic; line-height: .82; color: rgba(0,0,0,.05); margin-bottom: 20px; display: block; }
+.bs-format-tag { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+.bs-format-copy h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(22px, 2.8vw, 40px); font-weight: 400; letter-spacing: -.01em; line-height: 1.06; color: #0d0d0d; margin-bottom: 14px; }
+.bs-format-copy h3 em { font-style: italic; color: var(--accent); }
+.bs-format-copy p { font-size: 14px; color: var(--text-soft); line-height: 1.68; max-width: 36ch; font-weight: 300; }
+.bs-format:nth-child(even) .bs-format-photo { order: 2; }
+.bs-format:nth-child(even) .bs-format-copy { order: 1; }
+
+/* ── FULL-BLEED BREAK ── */
+.bs-break { position: relative; height: 54vh; min-height: 360px; max-height: 520px; overflow: hidden; }
+.bs-break img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bs-break-mask { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.2) 58%, transparent 100%); display: flex; align-items: center; }
+.bs-break-copy { padding: 0 64px; }
+.bs-break-copy h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 4.5vw, 64px); font-weight: 300; color: #fff; letter-spacing: -.02em; line-height: 1.02; max-width: 20ch; }
+.bs-break-copy h2 em { font-style: italic; }
+.bs-break-copy p { font-size: 15px; color: rgba(255,255,255,.5); max-width: 40ch; margin-top: 18px; line-height: 1.6; font-weight: 300; }
+
+/* ── FEATURES minimal ── */
+.bs-feats { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(0,0,0,.08); }
+.bs-feat { padding: 28px 32px; border-bottom: 1px solid rgba(0,0,0,.08); border-right: 1px solid rgba(0,0,0,.08); display: flex; gap: 18px; align-items: flex-start; transition: background .25s; }
+.bs-feat:hover { background: rgba(0,0,0,.015); }
+.bs-feat:nth-child(even) { border-right: none; }
+.bs-feat:nth-last-child(-n+2) { border-bottom: none; }
+.bs-feat-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex: 0 0 5px; margin-top: 10px; }
+.bs-feat h4 { font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; margin-bottom: 4px; color: #0d0d0d; }
+.bs-feat p { font-size: 13px; color: var(--text-soft); line-height: 1.58; font-weight: 300; }
+
+/* ── GALERÍA editorial ── */
+.bs-gal { display: grid; grid-template-columns: 1fr 1.4fr 1fr; grid-template-rows: 220px 220px; gap: 4px; }
+.bs-gal-main { grid-row: 1 / 3; }
+.bs-gal a { display: block; overflow: hidden; }
+.bs-gal img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.3s cubic-bezier(.19,1,.22,1); }
+.bs-gal a:hover img { transform: scale(1.06); }
+
+/* ── CTA verde centrado ── */
+.bs-cta { background: var(--accent); text-align: center; padding: 80px 0; }
+.bs-cta .eyebrow { color: rgba(255,255,255,.45); margin-bottom: 18px; }
+.bs-cta h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(30px, 5vw, 62px); font-weight: 400; color: #fff; letter-spacing: -.015em; line-height: 1.04; max-width: 22ch; margin: 0 auto 14px; }
+.bs-cta h2 em { font-style: italic; color: rgba(255,255,255,.65); }
+.bs-cta p { color: rgba(255,255,255,.5); max-width: 40ch; margin: 0 auto 30px; font-size: 15px; line-height: 1.65; font-weight: 300; }
+.bs-cta .btn-white { background: #fff; color: var(--accent); border-color: #fff; }
+.bs-cta .btn-white:hover { background: #eef5f0; }
+
+/* NAV transparente sobre hero */
+header.nav { background: transparent; border-bottom: 1px solid transparent; }
+header.nav.solid { background: rgba(255,255,255,.93); border-bottom: 1px solid rgba(0,0,0,.08); backdrop-filter: blur(12px); }
+header.nav:not(.solid) .nav-logo-name,
+header.nav:not(.solid) .nav-section-tag,
+header.nav:not(.solid) .nav-menu a { color: #fff; }
+header.nav:not(.solid) .nav-menu a.active::after { background: #fff; }
+header.nav:not(.solid) .nav-toggle { color: #fff; }
+header.nav:not(.solid) .btn-accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+header.nav:not(.solid) .btn-accent:hover { background: #214d31; border-color: #214d31; }
+
+/* DISPONIBILIDAD BAR */
+.cc-avail-bar {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 28px;
+  padding: 44px 52px;
+  background: #060d07;
+  border-top: 1px solid rgba(58,173,110,.18);
+}
+.cc-avail-bar::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(58,173,110,.07) 50%, transparent 100%);
+  animation: avail-sweep 3.5s ease-in-out infinite;
+}
+@keyframes avail-sweep { to { left: 160%; } }
+.cc-avail-bar::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #3aad6e, transparent);
+  animation: avail-line 3.5s ease-in-out infinite;
+}
+@keyframes avail-line {
+  0% { opacity: 0; transform: scaleX(0); }
+  30% { opacity: 1; transform: scaleX(1); }
+  70% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+.cc-avail-dot-wrap { position: relative; flex-shrink: 0; width: 16px; height: 16px; }
+.cc-avail-dot { width: 16px; height: 16px; border-radius: 50%; background: #3aad6e; position: absolute; inset: 0; }
+.cc-avail-dot::before, .cc-avail-dot::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(58,173,110,.4);
+  animation: avail-ring 2s ease-out infinite;
+}
+.cc-avail-dot::after { animation-delay: .8s; }
+@keyframes avail-ring {
+  0% { transform: scale(1); opacity: .6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.cc-avail-copy { flex: 1; }
+.cc-avail-label {
+  font-size: 10px; font-weight: 600; letter-spacing: .28em;
+  text-transform: uppercase; color: #3aad6e; margin-bottom: 6px;
+}
+.cc-avail-title {
+  font-size: clamp(18px, 2.2vw, 28px); font-weight: 300;
+  letter-spacing: -.025em; color: #fff; line-height: 1.15; margin-bottom: 4px;
+}
+.cc-avail-title strong { font-weight: 600; color: #3aad6e; }
+.cc-avail-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.38); }
+.cc-avail-btn {
+  flex-shrink: 0; position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px; border-radius: 4px;
+  background: #3aad6e; color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .25s, transform .25s;
+  box-shadow: 0 0 28px rgba(58,173,110,.35);
+}
+.cc-avail-btn:hover { background: #2e9a5c; transform: translateY(-2px); box-shadow: 0 6px 36px rgba(58,173,110,.5); }
+.cc-avail-btn::after { content: '↗'; font-size: 14px; }
+
+/* RESPONSIVE */
+@media(max-width:1024px) {
+  .bs-format { grid-template-columns: 1fr; min-height: auto; }
+  .bs-format-photo { height: 56vw; min-height: 260px; }
+  .bs-format:nth-child(even) .bs-format-photo { order: 0; }
+  .bs-format:nth-child(even) .bs-format-copy { order: 0; }
+  .bs-format-copy { padding: 36px 28px; }
+  .bs-break-copy { padding: 0 32px; }
+  .bs-gal { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+  .bs-gal-main { grid-row: auto; }
+}
+@media(max-width:640px) {
+  .bs-feats { grid-template-columns: 1fr; }
+  .bs-feat:nth-child(even) { border-right: none; }
+  .bs-feat:nth-last-child(-n+2) { border-bottom: 1px solid rgba(0,0,0,.08); }
+  .bs-feat:last-child { border-bottom: none; }
+  .bs-gal { grid-template-columns: 1fr 1fr; grid-template-rows: 150px 150px 150px; }
+  .bs-hero-copy { padding: 0 20px; }
+  .cc-avail-bar { flex-wrap: wrap; padding: 24px; gap: 14px; }
+  .cc-avail-btn { width: 100%; justify-content: center; }
+  header.nav .btn-accent { display: none; }
+}
+</style>
+<link rel="icon" href="logo.png" type="image/png" />
+<link rel="apple-touch-icon" href="logo.png" />
+</head>
+<body data-page="social" data-section="bodas" data-hero>
+<div id="site-nav"></div>
+
+<!-- HERO full-bleed cinematic -->
+<section class="bs-hero">
+  <div class="bs-hero-img"><img src="img/aerial-1.jpg" alt="Vista aérea nocturna del predio Elías Regules" /></div>
+  <div class="bs-hero-overlay"></div>
+  <div class="bs-hero-copy">
+    <p class="bs-hero-eyebrow">Elías Regules · Bodas &amp; Celebraciones</p>
+    <div class="bs-divider"></div>
+    <h1 class="bs-h1">Para el día más <em>especial</em> de tu vida.</h1>
+    <p class="bs-hero-sub">Cinco hectáreas de naturaleza en Montevideo. Un escenario que no necesita producción para parecer un sueño.</p>
+    <a href="social-contacto.html#cotizar" class="btn btn-accent btn-lg">Consultá disponibilidad</a>
+  </div>
+</section>
+
+<!-- INTRO quote -->
+<section class="bs-intro">
+  <div class="wrap">
+    <span class="bs-ornament">✦ ✦ ✦</span>
+    <p class="bs-intro-q">Un predio privado donde la naturaleza hace casi todo el trabajo. Jardines, parque y salones con carácter propio, a minutos del centro de <em>Montevideo</em>.</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="bs-ticker" aria-hidden="true">
+  <div class="bs-ticker-track">
+    <div class="bs-ticker-seg">
+      <span class="bs-ticker-item">Casamientos</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Ceremonias al aire libre</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Fiestas de cumpleaños</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Cenas de gala</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Fiestas de 15</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">5 hectáreas · Montevideo</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Av. Bolivia 2455</span><span class="bs-ticker-orn">✦</span>
+    </div>
+    <div class="bs-ticker-seg" aria-hidden="true">
+      <span class="bs-ticker-item">Casamientos</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Ceremonias al aire libre</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Fiestas de cumpleaños</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Cenas de gala</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Fiestas de 15</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">5 hectáreas · Montevideo</span><span class="bs-ticker-orn">✦</span>
+      <span class="bs-ticker-item">Av. Bolivia 2455</span><span class="bs-ticker-orn">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORMATOS: editorial horizontal -->
+<div id="b-tipos" class="bs-formats">
+
+  <div class="bs-format">
+    <div class="bs-format-photo"><img src="img/gala-tent.jpg" alt="Casamiento en Elías Regules" /></div>
+    <div class="bs-format-copy">
+      <span class="bs-format-num">I</span>
+      <p class="bs-format-tag">Casamientos</p>
+      <h3>El escenario que hace <em>único</em> el momento.</h3>
+      <p>Ceremonia al aire libre, fiesta en el parque o el salón. El predio entero, solo para vos y tus invitados. Sin compartir con nadie más.</p>
+    </div>
+  </div>
+
+  <div class="bs-format">
+    <div class="bs-format-photo"><img src="img/hall-1.jpg" alt="Fiesta nocturna en Elías Regules" /></div>
+    <div class="bs-format-copy">
+      <span class="bs-format-num">II</span>
+      <p class="bs-format-tag">Fiestas &amp; cumpleaños</p>
+      <h3>Un lugar que <em>eleva</em> cualquier celebración.</h3>
+      <p>De 15, de 50 o de lo que sea. La naturaleza como escenario reduce la producción y multiplica la magia.</p>
+    </div>
+  </div>
+
+  <div class="bs-format">
+    <div class="bs-format-photo"><img src="img/quebra-3.jpg" alt="Cena de gala en Elías Regules" /></div>
+    <div class="bs-format-copy">
+      <span class="bs-format-num">III</span>
+      <p class="bs-format-tag">Cenas &amp; galas</p>
+      <h3>Veladas que se <em>recuerdan</em>.</h3>
+      <p>Galas benéficas, cenas especiales y reuniones íntimas con el parque como telón de fondo. Un marco que no tiene precio.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FULL-BLEED BREAK -->
+<div class="bs-break" id="b-lugar">
+  <img src="img/aerial-5.jpg" alt="Vista nocturna del predio Elías Regules" />
+  <div class="bs-break-mask">
+    <div class="bs-break-copy">
+      <h2>Naturaleza, historia y <em>exclusividad</em> en un mismo lugar.</h2>
+      <p>Trabajamos con tu organizador y catering para que vos solo tengas que disfrutar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EL LUGAR: features -->
+<section>
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:36px">
+      <p class="eyebrow">El predio</p>
+      <h2 class="bs" style="font-size:clamp(24px,3.2vw,40px);font-weight:400;letter-spacing:-.01em">Todo lo que una celebración <em>necesita</em>.</h2>
+    </div>
+    <div class="bs-feats">
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Ceremonia al aire libre</h4><p>Jardines y espacios verdes para una ceremonia íntima rodeada de naturaleza.</p></div></div>
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Fiesta en el parque</h4><p>5 hectáreas de parque privado para montar la fiesta que imaginaste.</p></div></div>
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Salones con carácter</h4><p>Espacios interiores con historia, madera y piedra. Únicos en Montevideo.</p></div></div>
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Exclusividad total</h4><p>El predio es tuyo durante tu evento. Sin eventos paralelos, sin extraños.</p></div></div>
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Estacionamiento privado</h4><p>Amplio estacionamiento dentro del predio para todos tus invitados.</p></div></div>
+      <div class="bs-feat"><div class="bs-feat-dot"></div><div><h4>Coordinación en sitio</h4><p>Equipo de coordinación presente todo el día para que nada falle.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center" style="margin-bottom:28px">
+      <p class="eyebrow">Galería</p>
+      <h2 class="bs" style="font-size:clamp(24px,3.2vw,40px);font-weight:400;letter-spacing:-.01em">Noches en el <em>predio</em>.</h2>
+    </div>
+    <div class="bs-gal">
+      <a href="social-galeria.html"><img src="img/lasers.jpg" alt="Luces en Elías Regules" /></a>
+      <a href="social-galeria.html" class="bs-gal-main"><img src="img/aerial-1.jpg" alt="Vista aérea nocturna" /></a>
+      <a href="social-galeria.html"><img src="img/lightart.jpg" alt="Light art en el predio" /></a>
+      <a href="social-galeria.html"><img src="img/social-dinner.jpg" alt="Cena social en Elías Regules" /></a>
+      <a href="social-galeria.html"><img src="img/aerial-3.jpg" alt="Vista aérea del predio" /></a>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="social-galeria.html" class="btn btn-outline">Ver galería completa</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA: verde centrado -->
+<section class="bs-cta">
+  <div class="wrap">
+    <p class="eyebrow">Tu celebración</p>
+    <h2>¿Te imaginás tu evento <em>acá</em>?</h2>
+    <p>Contanos la fecha y el estilo de tu celebración. Te respondemos con disponibilidad y una propuesta a tu medida.</p>
+    <a href="social-contacto.html#cotizar" class="btn btn-white btn-lg">Consultá disponibilidad</a>
+  </div>
+</section>
+
+<section class="cc-avail-bar">
+  <div class="cc-avail-dot-wrap"><div class="cc-avail-dot"></div></div>
+  <div class="cc-avail-copy">
+    <p class="cc-avail-label">En vivo</p>
+    <p class="cc-avail-title">Chequeá <strong>disponibilidad</strong> de fechas.</p>
+    <p class="cc-avail-text">Mirá el calendario en tiempo real y enviá tu consulta al instante.</p>
+  </div>
+  <a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="cc-avail-btn">Chequear disponibilidad</a>
+</section>
+
+<div id="site-footer"></div>
+<script src="site.js"></script>
+</body>
+</html>

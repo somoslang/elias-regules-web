@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cotizar evento — Elías Regules</title>
+<meta name="description" content="Cotizá tu evento en Elías Regules. Av. Bolivia 2455, Montevideo. ventas@eliasregules.com · +598 95 893 475." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="logo.png" type="image/png" />
+<link rel="apple-touch-icon" href="logo.png" />
+<style>
+/* ── CORP-CONTACTO: refined / editorial ── */
+
+.phero { padding: 86px 0 40px; }
+.phero h1 {
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 400; letter-spacing: -.022em;
+  max-width: 28ch; line-height: 1.18;
+}
+.phero p { font-size: 14px; max-width: 46ch; margin-top: 10px; line-height: 1.65; }
+
+#cotizar { padding-bottom: 0; }
+
+.cq-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding-bottom: 80px;
+}
+
+/* ── SIDEBAR (bloque) ── */
+.cq-aside {
+  position: sticky; top: 72px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px 20px;
+  background: var(--paper-2);
+}
+.cq-block { margin-bottom: 18px; }
+.cq-block:last-of-type { margin-bottom: 0; }
+.cq-label {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: 4px;
+}
+.cq-val { font-size: 13px; color: var(--text); line-height: 1.55; }
+.cq-val a { color: var(--text); text-decoration: none; }
+.cq-val a:hover { color: var(--accent); }
+.cq-line { height: 1px; background: var(--line); margin: 16px 0; }
+.cq-map-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent);
+  text-decoration: none; margin-top: 16px;
+  border-bottom: 1px solid transparent; transition: border-color .2s;
+}
+.cq-map-link:hover { border-color: var(--accent); }
+.cq-map-link i { font-size: 13px; }
+
+/* ── FORM (bloque con contorno) ── */
+.cq-form {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 32px;
+  background: var(--paper);
+}
+.cq-form .field { margin-bottom: 22px; }
+.cq-form .field label {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9.5px; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--text-faint); margin-bottom: 6px;
+}
+.cq-form .field input,
+.cq-form .field select,
+.cq-form .field textarea {
+  width: 100%; font-family: inherit; font-size: 14px; color: var(--text);
+  background: transparent; border: none;
+  border-bottom: 1px solid var(--line); border-radius: 0;
+  padding: 8px 0; transition: border-color .2s;
+  appearance: none; -webkit-appearance: none;
+}
+.cq-form .field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%23aaa'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0 center;
+  padding-right: 16px; cursor: pointer;
+}
+.cq-form .field input:focus,
+.cq-form .field select:focus,
+.cq-form .field textarea:focus { outline: none; border-color: var(--accent); }
+.cq-form .field textarea { min-height: 88px; resize: vertical; }
+.cq-form .chips { gap: 6px; margin-top: 4px; }
+.cq-form .chip { font-size: 11.5px; padding: 7px 13px; border-radius: 2px; letter-spacing: .01em; }
+.cq-form .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.cq-form-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding-top: 24px; border-top: 1px solid var(--line); margin-top: 4px;
+}
+.cq-note { font-size: 11px; color: var(--text-faint); line-height: 1.4; }
+
+/* honeypot */
+.bot-field { display: none; }
+
+#formOk { border-radius: 4px !important; text-align: center; padding: 40px 32px !important; }
+#formOk h3 { font-weight: 400 !important; }
+
+/* ── AVAIL BAR ── */
+.cq-avail {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 28px;
+  padding: 28px 44px; background: #1e4a30;
+}
+.cq-avail::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+  animation: cq-sweep 3.5s ease-in-out infinite;
+}
+@keyframes cq-sweep { to { left: 160%; } }
+.cq-avail-dot-wrap { position: relative; flex-shrink: 0; width: 14px; height: 14px; }
+.cq-avail-dot { width: 14px; height: 14px; border-radius: 50%; background: #fff; position: absolute; inset: 0; }
+.cq-avail-dot::before, .cq-avail-dot::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(255,255,255,.5); animation: cq-ring 2s ease-out infinite;
+}
+.cq-avail-dot::after { animation-delay: .8s; }
+@keyframes cq-ring {
+  0% { transform: scale(1); opacity: .6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.cq-avail-copy { flex: 1; }
+.cq-avail-label {
+  font-size: 9px; font-weight: 600; letter-spacing: .26em;
+  text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 3px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.cq-avail-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(14px, 1.4vw, 19px); font-weight: 400;
+  letter-spacing: -.02em; color: #fff; line-height: 1.2;
+}
+.cq-avail-title strong { font-weight: 600; color: #7dd4a0; }
+.cq-avail-btn {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 26px; border-radius: 4px; background: #fff; color: #1e4a30;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .2s, transform .25s;
+}
+.cq-avail-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
+.cq-avail-btn::after { content: '↗'; font-size: 14px; }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 860px) {
+  .cq-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cq-aside { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+  .cq-line { display: none; }
+  .cq-map-link { grid-column: 1 / -1; margin-top: 4px; }
+}
+/* El botón de cotizar está de más en la propia página de contacto */
+header.nav .btn-accent { display: none; }
+
+@media(max-width: 640px) {
+  .phero { padding: 76px 0 28px; }
+  .phero h1 { font-size: 22px; }
+  .cq-aside { grid-template-columns: 1fr; }
+  .cq-form { padding: 20px 16px; }
+  .cq-form .frow { grid-template-columns: 1fr; gap: 0; }
+  .cq-form-foot { flex-direction: column; align-items: flex-start; }
+  .cq-form-foot .btn { width: 100%; justify-content: center; }
+  .cq-avail { flex-wrap: wrap; padding: 24px; gap: 14px; }
+  .cq-avail-btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body data-page="contacto" data-section="corp">
+<div id="site-nav"></div>
+
+<section class="phero">
+  <div class="wrap">
+    <div class="crumb"><a href="corporativo.html">Corporativo</a> · Contacto</div>
+    <h1 class="serif">Cotizá tu evento <em>corporativo</em>.</h1>
+    <p>Contanos qué tenés en mente y te respondemos con disponibilidad y una propuesta a medida.</p>
+  </div>
+</section>
+
+<section id="cotizar">
+  <div class="wrap">
+    <div class="cq-grid">
+
+      <!-- ASIDE (bloque) -->
+      <aside class="cq-aside">
+        <div class="cq-block">
+          <span class="cq-label">Dirección</span>
+          <span class="cq-val">Av. Bolivia 2455<br>Montevideo, Uruguay</span>
+        </div>
+        <div class="cq-line"></div>
+        <div class="cq-block">
+          <span class="cq-label">Email</span>
+          <span class="cq-val"><a href="mailto:ventas@eliasregules.com">ventas@eliasregules.com</a></span>
+        </div>
+        <div class="cq-block">
+          <span class="cq-label">Teléfono</span>
+          <span class="cq-val"><a href="tel:+59895893475">+598 95 893 475</a></span>
+        </div>
+        <div class="cq-line"></div>
+        <div class="cq-block">
+          <span class="cq-label">Visitas</span>
+          <span class="cq-val">Con cita previa<br>Lun–Sáb, 9 a 18 hs</span>
+        </div>
+        <a class="cq-map-link" href="https://www.google.com/maps/search/?api=1&query=Centro+de+Eventos+El%C3%ADas+Regules" target="_blank" rel="noopener">
+          <i class="ti ti-map-pin"></i> Ver en mapa
+        </a>
+      </aside>
+
+      <!-- FORM (bloque con contorno) -->
+      <div>
+        <div id="formOk" style="display:none;background:var(--paper-2);border:1px solid var(--line);padding:40px 32px">
+          <div style="font-size:36px;color:var(--accent);margin-bottom:10px"><i class="ti ti-circle-check"></i></div>
+          <h3 class="serif" style="font-size:20px;font-weight:400;margin-bottom:8px">¡Gracias por tu consulta!</h3>
+          <p style="color:var(--text-soft);font-size:14px">Te respondemos en menos de 24 horas.</p>
+        </div>
+
+        <form id="quoteForm" class="cq-form"
+              name="cotizar-corporativo"
+              data-netlify="true"
+              netlify-honeypot="bot-field">
+
+          <input type="hidden" name="form-name" value="cotizar-corporativo" />
+          <p class="bot-field"><label>No completar: <input name="bot-field" /></label></p>
+
+          <div class="frow">
+            <div class="field"><label>Tipo de evento</label>
+              <select name="tipo-evento">
+                <option value="">—</option>
+                <option>Boda</option>
+                <option>Fiesta de 15</option>
+                <option>Bar Mitzvá / Bat Mitzvá</option>
+                <option>Cumpleaños</option>
+                <option>Graduación</option>
+                <option>Corporativo</option>
+                <option>Fiesta</option>
+                <option>Otros</option>
+              </select>
+            </div>
+            <div class="field"><label>Fecha estimada</label>
+              <input type="date" name="fecha" />
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Cantidad de personas</label>
+              <input type="number" name="personas" placeholder="Ej. 200" />
+            </div>
+            <div class="field"><label>Horario</label>
+              <select name="horario">
+                <option>Mañana</option><option>Tarde</option><option>Noche</option>
+                <option>Día completo</option><option>A definir</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Espacios de interés</label>
+            <input type="hidden" name="espacios" />
+            <div class="chips">
+              <div class="chip">Salón principal</div>
+              <div class="chip">Parque / aire libre</div>
+              <div class="chip">Casco antiguo</div>
+              <div class="chip">Pueblo</div>
+              <div class="chip">Ambos</div>
+              <div class="chip">Todo el predio</div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Nombre</label>
+              <input type="text" name="nombre" placeholder="Tu nombre" />
+            </div>
+            <div class="field"><label>Empresa / Organización</label>
+              <input type="text" name="empresa" placeholder="Nombre de la empresa" />
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Email</label>
+              <input type="email" name="email" placeholder="tu@empresa.com" />
+            </div>
+            <div class="field"><label>Teléfono / WhatsApp</label>
+              <input type="tel" name="telefono" placeholder="+598 9x xxx xxx" />
+            </div>
+          </div>
+          <div class="field"><label>Contanos más</label>
+            <textarea name="mensaje" placeholder="Detalles del evento, necesidades técnicas, lo que tengas en mente…"></textarea>
+          </div>
+          <div class="cq-form-foot">
+            <span class="cq-note">Te respondemos en menos de 24 hs.</span>
+            <button type="submit" class="btn btn-accent btn-lg">Enviar consulta</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FRANJA DISPONIBILIDAD EN VIVO -->
+<div class="cq-avail">
+  <div class="cq-avail-dot-wrap"><div class="cq-avail-dot"></div></div>
+  <div class="cq-avail-copy">
+    <p class="cq-avail-label">En vivo</p>
+    <p class="cq-avail-title">Chequeá <strong>disponibilidad</strong> de fechas.</p>
+  </div>
+  <a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="cq-avail-btn">Ver calendario</a>
+</div>
+
+<!-- FOTO APAISADA DEL PREDIO -->
+<div style="width:100%;height:clamp(260px,36vw,520px);overflow:hidden;display:block;">
+  <img src="img/predio-day.jpg" alt="Predio Elías Regules — 5 hectáreas en Montevideo"
+       style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;" />
+</div>
+
+<div id="site-footer"></div>
+<script src="site.js"></script>
+</body>
+</html>

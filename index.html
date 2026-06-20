@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Centro de Eventos Elías Regules — Montevideo</title>
+<meta name="description" content="Centro de eventos en Montevideo. Eventos corporativos y bodas en un predio privado de 5 hectáreas." />
+<meta property="og:title" content="Centro de Eventos Elías Regules — Montevideo" />
+<meta property="og:description" content="Eventos corporativos y bodas en un predio privado de 5 hectáreas a 10 minutos del centro." />
+<meta property="og:image" content="https://elias-regules.netlify.app/img/aerial-1.jpg" />
+<meta property="og:url" content="https://elias-regules.netlify.app" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="img/day-roche-13.jpg" />
+<link rel="preload" as="image" href="img/aerial-1.jpg" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; -webkit-font-smoothing: antialiased; background: #2f6a45; }
+body { display: flex; flex-direction: column; overflow: hidden; }
+
+/* ── BARRA SUPERIOR ── */
+.top-bar {
+  flex-shrink: 0; height: 66px;
+  display: flex; align-items: center; justify-content: center;
+  background: #2f6a45;
+}
+.top-bar-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px; font-weight: 500; letter-spacing: .42em;
+  text-transform: uppercase; color: #fff;
+}
+
+/* ── FOTOS ── */
+.chooser {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.choice {
+  position: relative; overflow: hidden;
+  display: block; text-decoration: none; cursor: pointer;
+}
+.choice img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .9s cubic-bezier(.4,0,.2,1);
+}
+.choice:hover img { transform: scale(1.04); }
+.choice-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(20px,3vw,44px);
+  transition: background .35s;
+}
+.choice-icon {
+  font-size: 28px; color: rgba(255,255,255,.55);
+  line-height: 1; transition: color .35s;
+}
+.choice:hover .choice-icon { color: rgba(255,255,255,.85); }
+.choice-overlay.corp   { background: linear-gradient(180deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.82) 100%); }
+.choice-overlay.social { background: linear-gradient(180deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.82) 100%); }
+.choice-tag, .choice-h, .choice-sub, .choice-cta { text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.choice-tag {
+  font-size: 9px; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+  font-family: 'Space Grotesk', sans-serif; margin-bottom: 10px;
+}
+.choice-h {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(17px, 1.9vw, 26px); font-weight: 500;
+  letter-spacing: -.025em; line-height: 1.15;
+  color: #fff; max-width: 16ch; margin-bottom: 8px;
+}
+.choice-sub {
+  font-size: 12px; font-weight: 300; color: rgba(255,255,255,.45);
+  max-width: 34ch; margin-bottom: 20px; line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+.choice-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+  border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px;
+  transition: color .3s, gap .3s, border-color .3s;
+}
+.choice-cta::after { content: '→'; }
+.choice:hover .choice-cta { color: #fff; border-color: rgba(255,255,255,.65); gap: 12px; }
+
+/* ── DISPONIBILIDAD BAR ── */
+.avail-bar {
+  flex-shrink: 0; position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 24px;
+  padding: 22px 44px;
+  background: #2f6a45;
+  border-top: none;
+}
+.avail-bar::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+  animation: avail-sweep 3.5s ease-in-out infinite;
+}
+@keyframes avail-sweep { to { left: 160%; } }
+.avail-bar::after { display: none; }
+.avail-dot-wrap { position: relative; flex-shrink: 0; width: 14px; height: 14px; }
+.avail-dot { width: 14px; height: 14px; border-radius: 50%; background: #fff; position: absolute; inset: 0; }
+.avail-dot::before, .avail-dot::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  animation: avail-ring 2s ease-out infinite;
+}
+.avail-dot::after { animation-delay: .8s; }
+@keyframes avail-ring {
+  0% { transform: scale(1); opacity: .6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.avail-copy { flex: 1; }
+.avail-label {
+  font-size: 9px; font-weight: 600; letter-spacing: .26em;
+  text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 3px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.avail-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(14px, 1.5vw, 20px); font-weight: 400;
+  letter-spacing: -.02em; color: #fff; line-height: 1.2;
+}
+.avail-title strong { font-weight: 700; }
+.avail-btn {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: 4px;
+  background: #fff; color: #2e9a5c;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; text-decoration: none;
+  transition: opacity .2s, transform .25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,.15);
+}
+.avail-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
+.avail-btn::after { content: '↗'; font-size: 13px; }
+
+/* MOBILE */
+@media(max-width:640px) {
+  html, body { height: auto; }
+  body { overflow: auto; display: block; }
+  .top-bar { position: sticky; top: 0; z-index: 10; }
+  .chooser { display: flex; flex-direction: column; gap: 2px; }
+  .choice { height: 60svh; min-height: 320px; }
+  .choice-overlay { padding: 22px; }
+  .choice-tag { font-size: 11px; }
+  .choice-h { font-size: 24px; }
+  .choice-sub { font-size: 13px; }
+  .avail-bar { flex-wrap: wrap; padding: 20px 24px; gap: 14px; }
+  .avail-btn { width: 100%; justify-content: center; }
+}
+</style>
+<link rel="icon" href="logo.png" type="image/png" />
+<link rel="apple-touch-icon" href="logo.png" />
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="top-bar">
+  <span class="top-bar-name">ELÍAS&nbsp;&nbsp;REGULES</span>
+</div>
+
+<!-- FOTOS -->
+<div class="chooser">
+  <a class="choice" href="corporativo.html">
+    <img src="img/day-roche-13.jpg" alt="Eventos corporativos en Elías Regules" style="object-position: center 85%;" />
+    <div class="choice-overlay corp">
+      <svg class="choice-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/>
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+      </svg>
+      <div>
+        <p class="choice-tag">Corporativo</p>
+        <h2 class="choice-h">Convenciones, kick-offs y lanzamientos.</h2>
+        <p class="choice-sub">Infraestructura y operación de primer nivel en 5 hectáreas de parque.</p>
+        <span class="choice-cta">Ver propuesta corporativa</span>
+      </div>
+    </div>
+  </a>
+  <a class="choice" href="social.html">
+    <img src="img/aerial-1.jpg" alt="Bodas y celebraciones en Elías Regules" />
+    <div class="choice-overlay social">
+      <svg class="choice-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="12" r="5"/>
+        <circle cx="15" cy="12" r="5"/>
+      </svg>
+      <div>
+        <p class="choice-tag">Bodas &amp; Celebraciones</p>
+        <h2 class="choice-h">Casamientos y celebraciones bajo las estrellas.</h2>
+        <p class="choice-sub">Un marco único para los momentos que no se olvidan.</p>
+        <span class="choice-cta">Ver propuesta de bodas</span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- BARRA DISPONIBILIDAD -->
+<div class="avail-bar">
+  <div class="avail-dot-wrap"><div class="avail-dot"></div></div>
+  <div class="avail-copy">
+    <p class="avail-label">En vivo</p>
+    <p class="avail-title">Chequeá <strong>disponibilidad</strong> de fechas.</p>
+  </div>
+  <a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="avail-btn">Chequear disponibilidad</a>
+</div>
+
+</body>
+</html>

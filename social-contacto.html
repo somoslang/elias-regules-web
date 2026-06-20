@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Consultá disponibilidad — Elías Regules Bodas</title>
+<meta name="description" content="Consultá disponibilidad para tu casamiento o celebración en Elías Regules. Av. Bolivia 2455, Montevideo." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+body{background:#faf8f4;--paper:#faf8f4;--paper-2:#f2efea;--line:rgba(80,65,45,.12)}
+.bs{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500}
+.bs em{font-style:italic;color:var(--accent)}
+header.nav{background:rgba(250,248,244,.9);backdrop-filter:blur(12px)}
+header.nav.solid{border-bottom:1px solid var(--line)}
+.phero{background:#faf8f4}
+</style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+</head>
+<body data-page="contacto" data-section="bodas">
+<div id="site-nav"></div>
+
+<section class="phero">
+  <div class="wrap">
+    <div class="crumb"><a href="social.html">Bodas &amp; Celebraciones</a> · Contacto</div>
+    <h1 class="bs">Consultá tu <em>fecha</em>.</h1>
+    <p>Contanos el tipo de celebración y la fecha estimada. Te respondemos con disponibilidad y una propuesta a medida.</p>
+  </div>
+</section>
+
+<section id="cotizar" style="padding-top:34px">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="info-row"><i class="ti ti-map-pin"></i><div><div class="k">Dirección</div><div class="v">Av. Bolivia 2455, Montevideo</div></div></div>
+        <div class="info-row"><i class="ti ti-mail"></i><div><div class="k">Email</div><div class="v"><a href="mailto:ventas@eliasregules.com">ventas@eliasregules.com</a></div></div></div>
+        <div class="info-row"><i class="ti ti-phone"></i><div><div class="k">Teléfono</div><div class="v"><a href="tel:095893475">095 893 475</a></div></div></div>
+        <div class="info-row"><i class="ti ti-clock"></i><div><div class="k">Visitas</div><div class="v">Con cita previa · Lun a Sáb</div></div></div>
+        <a class="mapwrap" href="https://www.google.com/maps/search/?api=1&query=Av.+Bolivia+2455,+Montevideo" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;text-decoration:none">
+          <span style="display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--accent)">
+            <i class="ti ti-map-pin" style="font-size:30px"></i>
+            <span style="font-size:14px;color:var(--text)">Av. Bolivia 2455, Montevideo</span>
+            <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600">Ver en Google Maps</span>
+          </span>
+        </a>
+      </div>
+      <div>
+        <div id="formOk" style="display:none;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:34px;text-align:center">
+          <div style="font-size:38px;color:var(--accent);margin-bottom:8px"><i class="ti ti-circle-check"></i></div>
+          <h3 class="bs" style="font-size:24px;margin-bottom:8px">¡Gracias por tu consulta!</h3>
+          <p style="color:var(--text-soft)">Te respondemos a la brevedad con disponibilidad. <em style="color:var(--text-faint)">(Demo — el formulario no envía datos.)</em></p>
+        </div>
+        <form id="quoteForm">
+          <div class="frow">
+            <div class="field"><label>Tipo de celebración</label>
+              <select><option>Casamiento</option><option>Fiesta de cumpleaños</option><option>Cena de gala / beneficio</option><option>Fiesta de 15</option><option>Otra celebración</option></select>
+            </div>
+            <div class="field"><label>Fecha estimada</label><input type="date" /></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Cantidad de invitados</label><input type="number" placeholder="Ej. 150" /></div>
+            <div class="field"><label>Horario</label>
+              <select><option>Tarde / Noche</option><option>Día</option><option>Tarde</option><option>Noche</option><option>A definir</option></select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Espacios de interés</label>
+            <div class="chips">
+              <div class="chip">Ceremonia al aire libre</div>
+              <div class="chip">Fiesta en el parque</div>
+              <div class="chip">Salón</div>
+              <div class="chip">Todo el predio</div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Nombre</label><input type="text" placeholder="Tu nombre" /></div>
+            <div class="field"><label>Organizador <span style="text-transform:none;letter-spacing:0;color:var(--text-faint)">(si tenés)</span></label><input type="text" placeholder="Nombre del organizador" /></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>Email</label><input type="email" placeholder="tu@email.com" /></div>
+            <div class="field"><label>Teléfono / WhatsApp</label><input type="tel" placeholder="09x xxx xxx" /></div>
+          </div>
+          <div class="field"><label>Contanos más</label><textarea placeholder="Estilo de la celebración, ideas, detalles especiales…"></textarea></div>
+          <button type="submit" class="btn btn-accent btn-lg" style="width:100%;justify-content:center">Enviar consulta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="site.js"></script>
+</body>
+</html>
