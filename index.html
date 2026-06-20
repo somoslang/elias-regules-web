@@ -179,10 +179,10 @@ body { display: flex; flex-direction: column; overflow: hidden; }
         <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
       </svg>
       <div>
-        <p class="choice-tag">Corporativo</p>
-        <h2 class="choice-h">Convenciones, kick-offs y lanzamientos.</h2>
-        <p class="choice-sub">Infraestructura y operación de primer nivel en 5 hectáreas de parque.</p>
-        <span class="choice-cta">Ver propuesta corporativa</span>
+        <p class="choice-tag"><!-- cms:index.corp_tag -->Corporativo<!-- /cms:index.corp_tag --></p>
+        <h2 class="choice-h"><!-- cms:index.corp_title -->Convenciones, kick-offs y lanzamientos.<!-- /cms:index.corp_title --></h2>
+        <p class="choice-sub"><!-- cms:index.corp_sub -->Infraestructura y operación de primer nivel en 5 hectáreas de parque.<!-- /cms:index.corp_sub --></p>
+        <span class="choice-cta"><!-- cms:index.corp_cta -->Ver propuesta corporativa<!-- /cms:index.corp_cta --></span>
       </div>
     </div>
   </a>
@@ -194,10 +194,10 @@ body { display: flex; flex-direction: column; overflow: hidden; }
         <circle cx="15" cy="12" r="5"/>
       </svg>
       <div>
-        <p class="choice-tag">Bodas &amp; Celebraciones</p>
-        <h2 class="choice-h">Casamientos y celebraciones bajo las estrellas.</h2>
-        <p class="choice-sub">Un marco único para los momentos que no se olvidan.</p>
-        <span class="choice-cta">Ver propuesta de bodas</span>
+        <p class="choice-tag"><!-- cms:index.social_tag -->Bodas &amp; Celebraciones<!-- /cms:index.social_tag --></p>
+        <h2 class="choice-h"><!-- cms:index.social_title -->Casamientos y celebraciones bajo las estrellas.<!-- /cms:index.social_title --></h2>
+        <p class="choice-sub"><!-- cms:index.social_sub -->Un marco único para los momentos que no se olvidan.<!-- /cms:index.social_sub --></p>
+        <span class="choice-cta"><!-- cms:index.social_cta -->Ver propuesta de bodas<!-- /cms:index.social_cta --></span>
       </div>
     </div>
   </a>
@@ -213,5 +213,16 @@ body { display: flex; flex-direction: column; overflow: hidden; }
   <a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="avail-btn">Chequear disponibilidad</a>
 </div>
 
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+      }
+    });
+  }
+</script>
 </body>
 </html>

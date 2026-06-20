@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: img
+public_folder: /img
+
+collections:
+  - name: "site"
+    label: "Contenido"
+    files:
+      - name: "content"
+        label: "Textos del sitio"
+        file: "content.json"
+        format: json
+        fields:
+          - label: "Datos de contacto"
+            name: "contacto"
+            widget: "object"
+            fields:
+              - label: "Teléfono"
+                name: "phone"
+                widget: "string"
+                hint: "Sin código de país. Ej: 095 893 475"
+              - label: "Teléfono internacional"
+                name: "phone_intl"
+                widget: "string"
+                hint: "Con código de país. Ej: +598 95 893 475"
+
+          - label: "Página de inicio"
+            name: "index"
+            widget: "object"
+            fields:
+              - label: "Card Corporativo – etiqueta"
+                name: "corp_tag"
+                widget: "string"
+              - label: "Card Corporativo – título"
+                name: "corp_title"
+                widget: "string"
+              - label: "Card Corporativo – subtítulo"
+                name: "corp_sub"
+                widget: "string"
+              - label: "Card Corporativo – botón"
+                name: "corp_cta"
+                widget: "string"
+              - label: "Card Bodas – etiqueta"
+                name: "social_tag"
+                widget: "string"
+              - label: "Card Bodas – título"
+                name: "social_title"
+                widget: "string"
+              - label: "Card Bodas – subtítulo"
+                name: "social_sub"
+                widget: "string"
+              - label: "Card Bodas – botón"
+                name: "social_cta"
+                widget: "string"
+
+          - label: "Página Corporativo"
+            name: "corporativo"
+            widget: "object"
+            fields:
+              - label: "Título hero"
+                name: "hero_h1"
+                widget: "string"
+                hint: "Podés usar <strong>negrita</strong> con etiquetas HTML"
+              - label: "Subtítulo hero"
+                name: "hero_sub"
+                widget: "text"
+
+          - label: "Página Bodas & Social"
+            name: "social"
+            widget: "object"
+            fields:
+              - label: "Título hero"
+                name: "hero_h1"
+                widget: "string"
+                hint: "Podés usar <em>cursiva</em> con etiquetas HTML"
+              - label: "Subtítulo hero"
+                name: "hero_sub"
+                widget: "text"
