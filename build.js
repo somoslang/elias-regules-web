@@ -1,6 +1,11 @@
 const fs = require('fs');
 
-const content = JSON.parse(fs.readFileSync('content.json', 'utf8'));
+const content = {
+  contacto: JSON.parse(fs.readFileSync('_content/contacto.json', 'utf8')),
+  index: JSON.parse(fs.readFileSync('_content/index.json', 'utf8')),
+  corporativo: JSON.parse(fs.readFileSync('_content/corporativo.json', 'utf8')),
+  social: JSON.parse(fs.readFileSync('_content/social.json', 'utf8')),
+};
 
 function get(obj, path) {
   return path.split('.').reduce((o, k) => (o != null ? o[k] : undefined), obj);
