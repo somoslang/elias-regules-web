@@ -349,7 +349,7 @@ async function loadPage(page) {
     if (!res.ok) throw new Error(res.status);
     const meta = await res.json();
     currentSha = meta.sha;
-    const data = JSON.parse(atob(meta.content.replace(/\n/g, '')));
+    const data = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g, '')))));
     renderFields(cfg, data);
   } catch (e) {
     document.getElementById('fields-scroll').innerHTML =
