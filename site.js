@@ -8,7 +8,10 @@
   styleEl.textContent =
     ".nav-logo{display:flex;flex-direction:column;gap:1px;line-height:1;text-decoration:none}" +
     ".nav-logo-name{font-family:'Space Grotesk',sans-serif;font-size:19px;letter-spacing:.14em;font-weight:600;color:var(--ink)}" +
-    ".nav-section-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}";
+    ".nav-section-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}" +
+    ".btn-live{position:relative;overflow:hidden}" +
+    ".btn-live::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:live-sweep 2.5s ease-in-out infinite}" +
+    "@keyframes live-sweep{to{left:160%}}";
   document.head.appendChild(styleEl);
 
   /* ─── NAV CORPORATIVO ─── */
@@ -22,6 +25,10 @@
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
+    var btnContent = current === "contacto"
+      ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
+      : '<a href="corp-contacto.html#cotizar" class="btn btn-accent">Cotizar evento</a>';
+
     var nav =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
       '<a class="nav-logo" href="corporativo.html">' +
@@ -33,7 +40,7 @@
         menuHtml +
       '</nav>' +
       '<div style="display:flex;align-items:center;gap:16px">' +
-        '<a href="corp-contacto.html#cotizar" class="btn btn-accent">Cotizar evento</a>' +
+        btnContent +
         '<button class="nav-toggle" id="navToggle" aria-label="Menú"><i class="ti ti-menu-2"></i></button>' +
       '</div></div></header>';
 
@@ -81,6 +88,10 @@
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
+    var btnContentB = current === "contacto"
+      ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
+      : '<a href="social-contacto.html#cotizar" class="btn btn-accent">Consultá disponibilidad</a>';
+
     var navB =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
       '<a class="nav-logo" href="social.html">' +
@@ -92,7 +103,7 @@
         menuHtmlB +
       '</nav>' +
       '<div style="display:flex;align-items:center;gap:16px">' +
-        '<a href="social-contacto.html#cotizar" class="btn btn-accent">Consultá disponibilidad</a>' +
+        btnContentB +
         '<button class="nav-toggle" id="navToggle" aria-label="Menú"><i class="ti ti-menu-2"></i></button>' +
       '</div></div></header>';
 
