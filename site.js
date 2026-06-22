@@ -14,9 +14,9 @@
     "@keyframes live-sweep{to{left:160%}}" +
     ".btn-pulse{animation:pulse-btn 2s cubic-bezier(.4,0,.6,1) infinite}" +
     "@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(58,173,110,.7)}50%{box-shadow:0 0 0 8px rgba(58,173,110,0)}}" +
-    ".avail-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:4px;background:#3aad6e;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,transform .25s,box-shadow .25s;box-shadow:0 0 28px rgba(58,173,110,.35)}" +
-    ".avail-btn:hover{background:#2e9a5c;transform:translateY(-2px);box-shadow:0 6px 36px rgba(58,173,110,.5)}" +
-    ".avail-btn::after{content:'↗';font-size:14px;margin-left:2px}";
+    ".avail-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:4px;background:#3aad6e;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,transform .25s,box-shadow .25s;box-shadow:0 0 20px rgba(58,173,110,.4)}" +
+    ".avail-btn:hover{background:#2e9a5c;transform:translateY(-2px);box-shadow:0 4px 28px rgba(58,173,110,.6)}" +
+    ".avail-btn::after{content:'↗';font-size:13px}";
   document.head.appendChild(styleEl);
 
   /* ─── NAV CORPORATIVO ─── */
