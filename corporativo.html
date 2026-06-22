@@ -103,13 +103,14 @@ body { background: #fff; --paper: #fff; --line: rgba(0,0,0,.08); --text-soft: rg
   padding: 44px 52px;
   background: #060d07;
   border-top: 1px solid rgba(58,173,110,.18);
+  box-shadow: 0 0 40px rgba(58,173,110,.15);
 }
-/* barrido de luz verde */
+/* barrido de luz verde más intenso */
 .cc-avail-bar::before {
   content: '';
   position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(58,173,110,.07) 50%, transparent 100%);
-  animation: avail-sweep 3.5s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(58,173,110,.15) 50%, transparent 100%);
+  animation: avail-sweep 3s ease-in-out infinite;
 }
 @keyframes avail-sweep { to { left: 160%; } }
 /* línea superior pulsante */

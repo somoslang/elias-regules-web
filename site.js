@@ -11,7 +11,9 @@
     ".nav-section-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}" +
     ".btn-live{position:relative;overflow:hidden}" +
     ".btn-live::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:live-sweep 2.5s ease-in-out infinite}" +
-    "@keyframes live-sweep{to{left:160%}}";
+    "@keyframes live-sweep{to{left:160%}}" +
+    ".btn-pulse{animation:pulse-btn 2s cubic-bezier(.4,0,.6,1) infinite}" +
+    "@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(58,173,110,.7)}50%{box-shadow:0 0 0 8px rgba(58,173,110,0)}}";
   document.head.appendChild(styleEl);
 
   /* ─── NAV CORPORATIVO ─── */
@@ -27,7 +29,7 @@
 
     var btnContent = current === "contacto"
       ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
-      : '<a href="corp-contacto.html#cotizar" class="btn btn-accent">Cotizar evento</a>';
+      : '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-pulse">Chequeá disponibilidad</a>';
 
     var nav =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
@@ -90,7 +92,7 @@
 
     var btnContentB = current === "contacto"
       ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
-      : '<a href="social-contacto.html#cotizar" class="btn btn-accent">Consultá disponibilidad</a>';
+      : '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-pulse">Chequeá disponibilidad</a>';
 
     var navB =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
