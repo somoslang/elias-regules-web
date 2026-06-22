@@ -13,7 +13,10 @@
     ".btn-live::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:live-sweep 2.5s ease-in-out infinite}" +
     "@keyframes live-sweep{to{left:160%}}" +
     ".btn-pulse{animation:pulse-btn 2s cubic-bezier(.4,0,.6,1) infinite}" +
-    "@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(58,173,110,.7)}50%{box-shadow:0 0 0 8px rgba(58,173,110,0)}}";
+    "@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(58,173,110,.7)}50%{box-shadow:0 0 0 8px rgba(58,173,110,0)}}" +
+    ".avail-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:4px;background:#3aad6e;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,transform .25s,box-shadow .25s;box-shadow:0 0 28px rgba(58,173,110,.35)}" +
+    ".avail-btn:hover{background:#2e9a5c;transform:translateY(-2px);box-shadow:0 6px 36px rgba(58,173,110,.5)}" +
+    ".avail-btn::after{content:'↗';font-size:14px;margin-left:2px}";
   document.head.appendChild(styleEl);
 
   /* ─── NAV CORPORATIVO ─── */
@@ -27,9 +30,7 @@
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
-    var btnContent = current === "contacto"
-      ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
-      : '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-pulse">Chequeá disponibilidad</a>';
+    var btnContent = '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequeá disponibilidad</a>';
 
     var nav =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
@@ -90,9 +91,7 @@
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
-    var btnContentB = current === "contacto"
-      ? '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-live">Chequeá disponibilidad</a>'
-      : '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="btn btn-accent btn-pulse">Chequeá disponibilidad</a>';
+    var btnContentB = '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequeá disponibilidad</a>';
 
     var navB =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
