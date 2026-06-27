@@ -234,48 +234,55 @@ body { display: flex; flex-direction: column; overflow: hidden; }
         if (!href || href.startsWith('http') || href.startsWith('#')) return;
         e.preventDefault();
 
-        var rect = link.getBoundingClientRect();
-        var img = link.querySelector('img');
-        var objPos = img ? (img.style.objectPosition || 'center center') : 'center center';
+        var isCorp = href === 'corporativo.html';
 
-        // Expanding cover: same image, grows from card position to full screen
-        var cover = document.createElement('div');
-        cover.style.cssText = [
-          'position:fixed',
-          'top:' + rect.top + 'px',
-          'left:' + rect.left + 'px',
-          'width:' + rect.width + 'px',
-          'height:' + rect.height + 'px',
-          'z-index:9999',
-          'pointer-events:none',
-          'background-image:url(' + (img ? img.currentSrc : '') + ')',
-          'background-size:cover',
-          'background-position:' + objPos,
-          'transition:top .55s cubic-bezier(.4,0,.2,1),left .55s cubic-bezier(.4,0,.2,1),width .55s cubic-bezier(.4,0,.2,1),height .55s cubic-bezier(.4,0,.2,1)'
-        ].join(';');
-        document.body.appendChild(cover);
+        if (isCorp) {
+          // Corporativo: fade limpio de toda la página
+          document.body.style.transition = 'opacity 0.38s ease';
+          document.body.style.opacity = '0';
+          setTimeout(function () { window.location.href = href; }, 400);
+        } else {
+          // Bodas: imagen se expande desde la card
+          var rect = link.getBoundingClientRect();
+          var img = link.querySelector('img');
+          var objPos = img ? (img.style.objectPosition || 'center center') : 'center center';
 
-        // Fade out everything else
-        document.querySelectorAll('.top-bar, .avail-bar').forEach(function (el) {
-          el.style.transition = 'opacity .3s ease';
-          el.style.opacity = '0';
-        });
-        document.querySelectorAll('a.choice').forEach(function (c) {
-          c.style.transition = 'opacity .3s ease';
-          c.style.opacity = c === link ? '0' : '0';
-        });
+          var cover = document.createElement('div');
+          cover.style.cssText = [
+            'position:fixed',
+            'top:' + rect.top + 'px',
+            'left:' + rect.left + 'px',
+            'width:' + rect.width + 'px',
+            'height:' + rect.height + 'px',
+            'z-index:9999',
+            'pointer-events:none',
+            'background-image:url(' + (img ? img.currentSrc : '') + ')',
+            'background-size:cover',
+            'background-position:' + objPos,
+            'transition:top .55s cubic-bezier(.4,0,.2,1),left .55s cubic-bezier(.4,0,.2,1),width .55s cubic-bezier(.4,0,.2,1),height .55s cubic-bezier(.4,0,.2,1)'
+          ].join(';');
+          document.body.appendChild(cover);
 
-        // Trigger expand
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            cover.style.top = '0';
-            cover.style.left = '0';
-            cover.style.width = '100vw';
-            cover.style.height = '100vh';
+          document.querySelectorAll('.top-bar, .avail-bar').forEach(function (el) {
+            el.style.transition = 'opacity .3s ease';
+            el.style.opacity = '0';
           });
-        });
+          document.querySelectorAll('a.choice').forEach(function (c) {
+            c.style.transition = 'opacity .3s ease';
+            c.style.opacity = '0';
+          });
 
-        setTimeout(function () { window.location.href = href; }, 580);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              cover.style.top = '0';
+              cover.style.left = '0';
+              cover.style.width = '100vw';
+              cover.style.height = '100vh';
+            });
+          });
+
+          setTimeout(function () { window.location.href = href; }, 580);
+        }
       });
     });
 
