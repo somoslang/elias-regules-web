@@ -1,5 +1,16 @@
 /* Elías Regules — nav + footer por sección */
 (function () {
+  // Page fade-in on load (pairs with index.html transition overlay)
+  var fadeIn = document.createElement('div');
+  fadeIn.style.cssText = 'position:fixed;inset:0;z-index:9998;background:#0d0d0d;opacity:1;pointer-events:none;transition:opacity 0.4s cubic-bezier(.4,0,.2,1)';
+  document.documentElement.appendChild(fadeIn);
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      fadeIn.style.opacity = '0';
+      setTimeout(function () { fadeIn.remove(); }, 420);
+    });
+  });
+
   var current = document.body.getAttribute("data-page") || "";
   var section = document.body.getAttribute("data-section") || "";
 
