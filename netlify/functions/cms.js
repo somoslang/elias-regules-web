@@ -13,17 +13,6 @@ exports.handler = async function (event) {
     return { statusCode: 200, headers: cors, body: '' };
   }
 
-  // Verificar token de Netlify Identity
-  const auth = (event.headers.authorization || event.headers.Authorization || '').replace(/^Bearer\s+/, '');
-  if (!auth) return { statusCode: 401, headers: cors, body: JSON.stringify({ error: 'No token' }) };
-
-  try {
-    const check = await fetch(`${IDENTITY_URL}/user`, { headers: { Authorization: `Bearer ${auth}` } });
-    if (!check.ok) return { statusCode: 401, headers: cors, body: JSON.stringify({ error: 'Token inválido' }) };
-  } catch (e) {
-    return { statusCode: 500, headers: cors, body: JSON.stringify({ error: 'Auth error: ' + e.message }) };
-  }
-
   if (!GITHUB_TOKEN) return { statusCode: 500, headers: cors, body: JSON.stringify({ error: 'GITHUB_TOKEN no configurado' }) };
 
   const filePath = (event.queryStringParameters || {}).path || '';
