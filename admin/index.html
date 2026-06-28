@@ -236,6 +236,7 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
 </div>
 
 <input type="file" id="gal-file-input" accept="image/*" multiple style="display:none">
+<input type="file" id="hs-file-input"  accept="image/*" multiple style="display:none">
 
 <script>
 /* ── Config páginas de texto ── */
@@ -880,10 +881,12 @@ function renderPlanoPanel(idx) {
   sync('hs-desc',  'desc');
 
   document.getElementById('hs-add-photo-btn').addEventListener('click', () => {
-    const fi = document.createElement('input'); fi.type = 'file'; fi.accept = 'image/*'; fi.multiple = true;
-    fi.addEventListener('change', async () => {
+    const fi = document.getElementById('hs-file-input');
+    fi.value = '';
+    fi.onchange = async () => {
       for (const file of Array.from(fi.files)) await uploadHsPhoto(planoSelIdx, file);
-    });
+      fi.onchange = null;
+    };
     fi.click();
   });
 
@@ -910,17 +913,34 @@ function renderHsPhotos(idx) {
   });
 }
 
+async function compressImage(file, maxPx = 1500, quality = 0.85) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      let { width: w, height: h } = img;
+      if (w > maxPx || h > maxPx) {
+        if (w > h) { h = Math.round(h * maxPx / w); w = maxPx; }
+        else       { w = Math.round(w * maxPx / h); h = maxPx; }
+      }
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      const b64 = c.toDataURL('image/jpeg', quality).split(',')[1];
+      res(b64);
+    };
+    img.onerror = rej;
+    img.src = url;
+  });
+}
+
 async function uploadHsPhoto(idx, file) {
   const btn = document.getElementById('hs-add-photo-btn');
   if (btn) { btn.textContent = 'Subiendo…'; btn.disabled = true; }
   try {
-    const b64 = await new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload  = e => res(e.target.result.split(',')[1]);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
-    const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase();
+    const b64 = await compressImage(file);
+    const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase().replace(/\.\w+$/, '.jpg');
     const upRes = await fetch(`/.netlify/functions/cms?path=img/${safeName}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${await getToken()}`, 'Content-Type': 'application/json' },
