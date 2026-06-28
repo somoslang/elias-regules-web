@@ -344,59 +344,10 @@
     <!-- MAPA -->
     <div class="pi-map-wrap" id="piMap">
       <img src="img/plano.png" alt="Plano del predio Elías Regules" draggable="false" />
-
-      <!-- HOTSPOT 1: Pabellón -->
-      <div class="hs" style="left:8.2%;top:41%" data-hs="0">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Pabellón</div>
-      </div>
-
-      <!-- HOTSPOT 2: Jardines -->
-      <div class="hs" style="left:21%;top:52%" data-hs="1">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Jardines</div>
-      </div>
-
-      <!-- HOTSPOT 3: Salón Principal -->
-      <div class="hs" style="left:27%;top:40%" data-hs="2">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Salón principal</div>
-      </div>
-
-      <!-- HOTSPOT 4: Escenario -->
-      <div class="hs" style="left:32%;top:30%" data-hs="3">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Escenario</div>
-      </div>
-
-      <!-- HOTSPOT 5: Backstage / Producción -->
-      <div class="hs" style="left:43%;top:32%" data-hs="4">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Producción</div>
-      </div>
-
-      <!-- HOTSPOT 6: Estacionamiento -->
-      <div class="hs" style="left:67%;top:50%" data-hs="5">
-        <div class="hs-ring"></div>
-        <div class="hs-dot"></div>
-        <div class="hs-label">Estacionamiento</div>
-      </div>
     </div>
 
     <!-- LEYENDA -->
-    <div class="pi-legend" id="piLegend">
-      <div class="pi-legend-item" data-hs="0"><span class="pi-legend-dot"></span>Pabellón</div>
-      <div class="pi-legend-item" data-hs="1"><span class="pi-legend-dot"></span>Jardines</div>
-      <div class="pi-legend-item" data-hs="2"><span class="pi-legend-dot"></span>Salón principal</div>
-      <div class="pi-legend-item" data-hs="3"><span class="pi-legend-dot"></span>Escenario</div>
-      <div class="pi-legend-item" data-hs="4"><span class="pi-legend-dot"></span>Producción</div>
-      <div class="pi-legend-item" data-hs="5"><span class="pi-legend-dot"></span>Estacionamiento</div>
-    </div>
+    <div class="pi-legend" id="piLegend"></div>
 
   </div>
 </div>
@@ -423,48 +374,36 @@
 <div id="site-footer"></div>
 <script src="site.js"></script>
 <script>
-var HOTSPOTS = [
-  {
-    tag: "Espacio independiente",
-    title: "Pabellón",
-    desc: "Espacio independiente del salón principal. Ideal para activaciones paralelas, producción técnica o como área de recepción exclusiva.",
-    photos: ["img/hall-1.jpg","img/hall-2.jpg","img/day-roche-13.jpg"]
-  },
-  {
-    tag: "Exterior",
-    title: "Jardines y parque",
-    desc: "5 hectáreas de jardines privados para dinámicas al aire libre, coffee breaks y networking. Siempre en exclusividad.",
-    photos: ["img/nature.jpg","img/predio-day.jpg","img/quebra-2.jpg","img/quebra-3.jpg","img/day-anda.jpg"]
-  },
-  {
-    tag: "Interior",
-    title: "Salón principal",
-    desc: "El corazón del predio. Capacidad para hasta 1.500 personas en formato teatro, banquete o cocktail. Acústica diseñada para impactar.",
-    photos: ["img/corp-event-day.jpg","img/day-roche-9.jpg","img/day-itau1.jpg","img/corp-dinner.jpg","img/social-dinner.jpg"]
-  },
-  {
-    tag: "Producción técnica",
-    title: "Escenario y LED walls",
-    desc: "Escenario profesional con pantallas LED, iluminación y sonido calibrado de primer nivel. Infraestructura integrada, sin improvisar.",
-    photos: ["img/stage-blue.jpg","img/hall-blue.jpg","img/lasers.jpg","img/lightart.jpg"]
-  },
-  {
-    tag: "Infraestructura",
-    title: "Área de producción",
-    desc: "Acceso de proveedores, carga y descarga, camerinos y coordinación técnica. Potencia eléctrica para producciones de cualquier escala.",
-    photos: ["img/production.jpg","img/panel-day.jpg","img/day-presi1.jpg","img/presi-2.jpg"]
-  },
-  {
-    tag: "Acceso",
-    title: "Estacionamiento",
-    desc: "Estacionamiento privado dentro del predio para cientos de vehículos. Sin colas, sin terceros, con acceso controlado.",
-    photos: ["img/aerial-1.jpg","img/aerial-2.jpg","img/aerial-3.jpg"]
-  }
-];
-
+var HOTSPOTS = [];
 var curPhotos = [];
 var curPhoto  = 0;
-var activeDot = null;
+
+fetch('/_content/plano-hotspots.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) { HOTSPOTS = data; renderMap(); })
+  .catch(function() {});
+
+function renderMap() {
+  var map = document.getElementById('piMap');
+  var legend = document.getElementById('piLegend');
+  HOTSPOTS.forEach(function(hs, idx) {
+    var dot = document.createElement('div');
+    dot.className = 'hs';
+    dot.style.left = hs.x + '%';
+    dot.style.top  = hs.y + '%';
+    dot.dataset.hs = idx;
+    dot.innerHTML = '<div class="hs-ring"></div><div class="hs-dot"></div><div class="hs-label">' + hs.label + '</div>';
+    dot.addEventListener('click', function() { openModal(idx); });
+    map.appendChild(dot);
+
+    var item = document.createElement('div');
+    item.className = 'pi-legend-item';
+    item.dataset.hs = idx;
+    item.innerHTML = '<span class="pi-legend-dot"></span>' + hs.label;
+    item.addEventListener('click', function() { openModal(idx); });
+    legend.appendChild(item);
+  });
+}
 
 function openModal(idx) {
   var hs = HOTSPOTS[idx];
@@ -475,7 +414,6 @@ function openModal(idx) {
   document.getElementById('modalTitle').textContent = hs.title;
   document.getElementById('modalDesc').textContent  = hs.desc;
 
-  // thumbs
   var thumbsEl = document.getElementById('modalThumbs');
   thumbsEl.innerHTML = '';
   hs.photos.forEach(function(src, i) {
@@ -489,9 +427,9 @@ function openModal(idx) {
   showPhoto(0);
   document.getElementById('piModalBg').classList.add('open');
 
-  // mark dot active
   document.querySelectorAll('.hs').forEach(function(el) { el.classList.remove('active'); });
-  document.querySelector('[data-hs="' + idx + '"].hs').classList.add('active');
+  var activeDot = document.querySelector('[data-hs="' + idx + '"].hs');
+  if (activeDot) activeDot.classList.add('active');
 }
 
 function showPhoto(i) {

@@ -139,6 +139,36 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
 .btn-save:hover { background: #256038; }
 .btn-save:disabled { opacity: .5; cursor: not-allowed; }
 .loading-msg { padding: 36px; color: #bbb; font-size: 13px; }
+
+/* ── PLANO EDITOR ── */
+.plano-layout { display: flex; gap: 20px; align-items: flex-start; }
+.plano-map-col { flex: 1.6; min-width: 0; }
+.plano-panel-col { width: 290px; flex-shrink: 0; position: sticky; top: 0; }
+.plano-hint-bar { font-size: 11px; color: #aaa; margin-bottom: 10px; line-height: 1.5; }
+.plano-map-wrap { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,.12); background: #fff; cursor: crosshair; user-select: none; }
+.plano-map-img { display: block; width: 100%; height: auto; pointer-events: none; }
+.plano-dot { position: absolute; transform: translate(-50%,-50%); z-index: 5; cursor: pointer; }
+.plano-dot-circle { width: 20px; height: 20px; border-radius: 50%; background: #2f6a45; border: 2.5px solid #fff; box-shadow: 0 2px 8px rgba(47,106,69,.5); transition: transform .15s, background .15s; }
+.plano-dot:hover .plano-dot-circle { transform: scale(1.2); }
+.plano-dot.selected .plano-dot-circle { background: #e8a020; box-shadow: 0 2px 10px rgba(232,160,32,.6); transform: scale(1.25); }
+.plano-dot-label { position: absolute; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: #1a1a1a; color: #fff; font-size: 9px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 3px 7px; border-radius: 4px; pointer-events: none; opacity: 0; transition: opacity .15s; }
+.plano-dot:hover .plano-dot-label, .plano-dot.selected .plano-dot-label { opacity: 1; }
+.plano-no-sel { padding: 40px 16px; text-align: center; color: #bbb; font-size: 13px; background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+.plano-no-sel-icon { font-size: 30px; margin-bottom: 10px; }
+.hs-photos-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.hs-photo-thumb { position: relative; width: 58px; height: 44px; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.hs-photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hs-photo-del { position: absolute; top: 2px; right: 2px; width: 16px; height: 16px; border-radius: 50%; background: rgba(180,30,30,.85); border: none; color: #fff; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.hs-add-photo { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; padding: 6px 12px; border: 1.5px dashed #c5ddd0; border-radius: 6px; color: #2f6a45; font-size: 11px; font-weight: 600; cursor: pointer; background: #f6faf7; transition: border-color .2s, background .2s; font-family: inherit; }
+.hs-add-photo:hover { border-color: #2f6a45; background: #eaf3ed; }
+.btn-del-hs { width: 100%; padding: 9px; border: 1.5px solid #f0b4b4; border-radius: 7px; background: #fff5f5; color: #c0392b; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; letter-spacing: .03em; transition: background .15s; margin-top: 4px; }
+.btn-del-hs:hover { background: #fee; }
+.btn-new-hs { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; margin-top: 12px; padding: 10px; border: 2px dashed #c5ddd0; border-radius: 8px; background: #f6faf7; color: #2f6a45; font-size: 12px; font-weight: 600; font-family: inherit; cursor: crosshair; letter-spacing: .02em; transition: border-color .2s, background .2s; }
+.btn-new-hs:hover { border-color: #2f6a45; background: #eaf3ed; }
+@media (max-width: 900px) {
+  .plano-layout { flex-direction: column; }
+  .plano-panel-col { width: 100%; position: static; }
+}
 </style>
 </head>
 <body>
@@ -176,6 +206,8 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
       <div class="nav-section-label">Galerías</div>
       <div class="nav-item" data-page="corp-galeria"><span class="nav-icon">📷</span> Galería Corporativo</div>
       <div class="nav-item" data-page="social-galeria"><span class="nav-icon">🌿</span> Galería Bodas</div>
+      <div class="nav-section-label">Plano</div>
+      <div class="nav-item" data-page="plano"><span class="nav-icon">🗺️</span> Plano interactivo</div>
       <div class="nav-section-label">General</div>
       <div class="nav-item" data-page="contacto"><span class="nav-icon">📞</span> Datos de contacto</div>
     </nav>
@@ -426,7 +458,9 @@ async function loadPage(page) {
   currentPage = page;
   setStatus('');
 
-  if (GAL_PAGES[page]) {
+  if (page === 'plano') {
+    await loadPlano();
+  } else if (GAL_PAGES[page]) {
     currentMode = 'gallery';
     document.getElementById('main-title').textContent = GAL_PAGES[page].label;
     document.getElementById('preview-btn').href = GAL_PAGES[page].preview;
@@ -645,7 +679,9 @@ document.getElementById('save-btn').onclick = async () => {
   btn.disabled = true; btn.textContent = 'Guardando…'; setStatus('');
 
   try {
-    if (currentMode === 'gallery') {
+    if (currentMode === 'plano') {
+      await savePlano();
+    } else if (currentMode === 'gallery') {
       await saveGallery();
     } else {
       await saveFields();
@@ -687,6 +723,233 @@ async function saveGallery() {
 function setStatus(type, msg) {
   const el = document.getElementById('save-status');
   el.textContent = msg || ''; el.className = 'save-status' + (type ? ' ' + type : '');
+}
+
+/* ── PLANO EDITOR ── */
+let planoData    = [];
+let planoSha     = '';
+let planoSelIdx  = -1;
+let planoDragging = false;
+
+async function loadPlano() {
+  currentMode = 'plano';
+  document.getElementById('main-title').textContent = 'Plano interactivo';
+  document.getElementById('preview-btn').href = '/plano-interactivo.html';
+  document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg">Cargando plano…</p>';
+  try {
+    const res  = await fetch('/.netlify/functions/cms?path=_content/plano-hotspots.json', { headers: { Authorization: `Bearer ${await getToken()}` } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const meta = await res.json();
+    planoSha  = meta.sha;
+    planoData = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g,'')))));
+    planoSelIdx = -1;
+    renderPlanoEditor();
+  } catch(e) {
+    document.getElementById('fields-scroll').innerHTML = `<p class="loading-msg" style="color:#c0392b">Error: ${e.message}</p>`;
+  }
+}
+
+function renderPlanoEditor() {
+  const scroll = document.getElementById('fields-scroll');
+  scroll.innerHTML = '';
+
+  const layout  = document.createElement('div'); layout.className  = 'plano-layout';
+  const mapCol  = document.createElement('div'); mapCol.className  = 'plano-map-col';
+  const panelCol = document.createElement('div'); panelCol.className = 'plano-panel-col'; panelCol.id = 'planoPanel';
+
+  mapCol.innerHTML = '<p class="plano-hint-bar">📍 Clickeá en el plano para agregar un punto nuevo · Clickeá un punto existente para editarlo · Arrastralo para moverlo</p>';
+
+  const mapWrap = document.createElement('div'); mapWrap.className = 'plano-map-wrap'; mapWrap.id = 'planoMapWrap';
+  mapWrap.innerHTML = '<img class="plano-map-img" src="/img/plano.png" alt="Plano" draggable="false" />';
+
+  planoData.forEach((_, i) => mapWrap.appendChild(makePlanoDot(i)));
+
+  mapWrap.addEventListener('click', e => {
+    if (planoDragging) return;
+    if (e.target.closest('.plano-dot')) return;
+    const rect = mapWrap.getBoundingClientRect();
+    const x = parseFloat(((e.clientX - rect.left) / rect.width * 100).toFixed(1));
+    const y = parseFloat(((e.clientY - rect.top)  / rect.height * 100).toFixed(1));
+    planoData.push({ label: 'Nuevo punto', tag: '', title: 'Nuevo punto', desc: '', x, y, photos: [] });
+    const newIdx = planoData.length - 1;
+    mapWrap.appendChild(makePlanoDot(newIdx));
+    selectPlanoDot(newIdx);
+  });
+
+  mapCol.appendChild(mapWrap);
+  layout.appendChild(mapCol);
+  layout.appendChild(panelCol);
+  scroll.appendChild(layout);
+
+  renderPlanoPanel(planoSelIdx >= 0 ? planoSelIdx : -1);
+}
+
+function makePlanoDot(idx) {
+  const hs  = planoData[idx];
+  const dot = document.createElement('div');
+  dot.className = 'plano-dot' + (idx === planoSelIdx ? ' selected' : '');
+  dot.id = `plano-dot-${idx}`;
+  dot.style.left = hs.x + '%';
+  dot.style.top  = hs.y + '%';
+  dot.innerHTML  = `<div class="plano-dot-circle"></div><div class="plano-dot-label">${hs.label || '—'}</div>`;
+
+  let startX, startY, startLeft, startTop, isDragging = false;
+
+  dot.addEventListener('pointerdown', e => {
+    e.preventDefault(); e.stopPropagation();
+    dot.setPointerCapture(e.pointerId);
+    const rect = document.getElementById('planoMapWrap').getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = hs.x; startTop = hs.y;
+    isDragging = false;
+  });
+
+  dot.addEventListener('pointermove', e => {
+    if (!dot.hasPointerCapture(e.pointerId)) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    if (!isDragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) { isDragging = true; planoDragging = true; }
+    if (!isDragging) return;
+    const rect = document.getElementById('planoMapWrap').getBoundingClientRect();
+    hs.x = parseFloat(Math.max(0, Math.min(100, startLeft + dx / rect.width  * 100)).toFixed(1));
+    hs.y = parseFloat(Math.max(0, Math.min(100, startTop  + dy / rect.height * 100)).toFixed(1));
+    dot.style.left = hs.x + '%';
+    dot.style.top  = hs.y + '%';
+  });
+
+  dot.addEventListener('pointerup', e => {
+    const wasDragging = isDragging;
+    isDragging = false;
+    setTimeout(() => { planoDragging = false; }, 50);
+    if (!wasDragging) selectPlanoDot(idx);
+  });
+
+  return dot;
+}
+
+function selectPlanoDot(idx) {
+  planoSelIdx = idx;
+  document.querySelectorAll('.plano-dot').forEach((d, i) => d.classList.toggle('selected', i === idx));
+  renderPlanoPanel(idx);
+}
+
+function renderPlanoPanel(idx) {
+  const panel = document.getElementById('planoPanel');
+  if (!panel) return;
+  if (idx < 0) {
+    panel.innerHTML = '<div class="plano-no-sel"><div class="plano-no-sel-icon">📍</div>Seleccioná un punto del plano para editarlo, o clickeá en el plano para crear uno nuevo.</div>';
+    return;
+  }
+  const hs = planoData[idx];
+
+  panel.innerHTML = `
+    <div class="field-group">
+      <div class="group-header"><div class="group-title">Punto ${idx + 1} de ${planoData.length}</div></div>
+      <div class="group-body">
+        <div class="field"><label class="field-label">Nombre del punto</label>
+          <input type="text" id="hs-label" value="${esc(hs.label)}" placeholder="Ej: Salón principal"></div>
+        <div class="field"><label class="field-label">Etiqueta</label>
+          <input type="text" id="hs-tag" value="${esc(hs.tag)}" placeholder="Ej: Interior"></div>
+        <div class="field"><label class="field-label">Título del modal</label>
+          <input type="text" id="hs-title" value="${esc(hs.title)}" placeholder="Ej: Salón principal"></div>
+        <div class="field"><label class="field-label">Descripción</label>
+          <textarea id="hs-desc" rows="3">${esc(hs.desc)}</textarea></div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="group-header"><div class="group-title">Fotos</div></div>
+      <div class="group-body">
+        <div id="hs-photos-list" class="hs-photos-list"></div>
+        <button class="hs-add-photo" id="hs-add-photo-btn">+ Subir foto</button>
+      </div>
+    </div>
+    <button class="btn-del-hs" id="btn-del-hs">Eliminar este punto</button>
+  `;
+
+  renderHsPhotos(idx);
+
+  const sync = (id, key) => document.getElementById(id).addEventListener('input', e => {
+    planoData[planoSelIdx][key] = e.target.value;
+    if (key === 'label') {
+      const d = document.getElementById(`plano-dot-${planoSelIdx}`);
+      if (d) d.querySelector('.plano-dot-label').textContent = e.target.value || '—';
+    }
+  });
+  sync('hs-label', 'label');
+  sync('hs-tag',   'tag');
+  sync('hs-title', 'title');
+  sync('hs-desc',  'desc');
+
+  document.getElementById('hs-add-photo-btn').addEventListener('click', () => {
+    const fi = document.createElement('input'); fi.type = 'file'; fi.accept = 'image/*'; fi.multiple = true;
+    fi.addEventListener('change', async () => {
+      for (const file of Array.from(fi.files)) await uploadHsPhoto(planoSelIdx, file);
+    });
+    fi.click();
+  });
+
+  document.getElementById('btn-del-hs').addEventListener('click', () => {
+    if (!confirm(`¿Eliminar el punto "${hs.label}"?`)) return;
+    planoData.splice(idx, 1);
+    planoSelIdx = -1;
+    renderPlanoEditor();
+  });
+}
+
+function renderHsPhotos(idx) {
+  const hs   = planoData[idx];
+  const list = document.getElementById('hs-photos-list');
+  if (!list) return;
+  list.innerHTML = '';
+  (hs.photos || []).forEach((src, pi) => {
+    const thumb = document.createElement('div'); thumb.className = 'hs-photo-thumb';
+    thumb.innerHTML = `<img src="${src}" alt="" /><button class="hs-photo-del" title="Eliminar">×</button>`;
+    thumb.querySelector('.hs-photo-del').addEventListener('click', () => {
+      hs.photos.splice(pi, 1); renderHsPhotos(idx);
+    });
+    list.appendChild(thumb);
+  });
+}
+
+async function uploadHsPhoto(idx, file) {
+  const btn = document.getElementById('hs-add-photo-btn');
+  if (btn) { btn.textContent = 'Subiendo…'; btn.disabled = true; }
+  try {
+    const b64 = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload  = e => res(e.target.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+    const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase();
+    const upRes = await fetch(`/.netlify/functions/cms?path=img/${safeName}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${await getToken()}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `Foto plano: ${safeName}`, content: b64, branch: 'main' })
+    });
+    if (!upRes.ok) throw new Error(await upRes.text());
+    planoData[idx].photos.push(`/img/${safeName}`);
+    renderHsPhotos(idx);
+  } catch(e) {
+    alert('Error al subir: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = '+ Subir foto'; btn.disabled = false; }
+  }
+}
+
+async function savePlano() {
+  const body    = JSON.stringify(planoData, null, 2) + '\n';
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+  const res = await fetch('/.netlify/functions/cms?path=_content/plano-hotspots.json', {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${await getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'Admin: Plano interactivo', content: encoded, sha: planoSha, branch: 'main' })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  planoSha = (await res.json()).content.sha;
+}
+
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
 </body>
