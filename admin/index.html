@@ -441,13 +441,16 @@ async function loadFields(page, cfg) {
   document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg">Cargando…</p>';
   try {
     const res  = await fetch(`/.netlify/git/github/contents/_content/${page}.json`, { headers: { Authorization: `Bearer ${await getToken()}` } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} — ${body.slice(0, 300)}`);
+    }
     const meta = await res.json();
     currentSha = meta.sha;
     const data = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g, '')))));
     renderFields(cfg, data);
   } catch(e) {
-    document.getElementById('fields-scroll').innerHTML = `<p class="loading-msg" style="color:#c0392b">Error al cargar (${e.message}). <br><br>Si el error es HTTP 401, cerrá sesión y volvé a entrar.</p>`;
+    document.getElementById('fields-scroll').innerHTML = `<p class="loading-msg" style="color:#c0392b;font-size:12px;line-height:1.6">Error al cargar:<br>${e.message}</p>`;
   }
 }
 
