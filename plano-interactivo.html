@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plano Interactivo — Elías Regules · Centro de Eventos</title>
+<meta name="description" content="Explorá el predio de Elías Regules zona por zona. Hacé click en cada punto del plano para ver fotos del espacio." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PAGE ── */
+.pi-page {
+  padding: 80px 0 60px;
+  background: #f8f6f2;
+  min-height: 100vh;
+}
+.pi-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.pi-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.pi-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -.02em;
+}
+.pi-header p {
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #666;
+}
+.pi-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(47,106,69,.1);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #2f6a45;
+}
+
+/* ── MAP CONTAINER ── */
+.pi-map-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 40px rgba(0,0,0,.12);
+  background: #fff;
+  user-select: none;
+}
+.pi-map-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── HOTSPOTS ── */
+.hs {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+}
+.hs-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(47,106,69,.4);
+  animation: hs-pulse 2.2s ease-out infinite;
+}
+.hs-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #2f6a45;
+  border: 2.5px solid #fff;
+  box-shadow: 0 2px 10px rgba(47,106,69,.5);
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+  z-index: 1;
+}
+.hs:hover .hs-dot {
+  transform: scale(1.25);
+  box-shadow: 0 4px 18px rgba(47,106,69,.7);
+}
+.hs.active .hs-dot {
+  background: #1d4a2d;
+}
+@keyframes hs-pulse {
+  0%   { transform: scale(1); opacity: .7; }
+  70%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── LABEL TOOLTIP ── */
+.hs-label {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+  transform: translateX(-50%) translateY(4px);
+}
+.hs-label::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1a1a1a;
+}
+.hs:hover .hs-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── MODAL ── */
+.pi-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.pi-modal-bg.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pi-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px) scale(.97);
+  transition: transform .3s;
+  box-shadow: 0 24px 80px rgba(0,0,0,.3);
+}
+.pi-modal-bg.open .pi-modal {
+  transform: none;
+}
+
+/* foto principal */
+.modal-photo-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #111;
+  flex-shrink: 0;
+}
+.modal-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.modal-photo-nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .2s;
+}
+.modal-photo-nav:hover { background: rgba(0,0,0,.7); }
+.modal-photo-nav.prev { left: 12px; }
+.modal-photo-nav.next { right: 12px; }
+.modal-photo-count {
+  position: absolute;
+  bottom: 12px; right: 14px;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+
+/* thumbs */
+.modal-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px 0;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+.modal-thumbs::-webkit-scrollbar { height: 3px; }
+.modal-thumbs::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+.modal-thumb {
+  flex-shrink: 0;
+  width: 52px; height: 38px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color .2s, opacity .2s;
+  opacity: .6;
+}
+.modal-thumb.active { border-color: #2f6a45; opacity: 1; }
+.modal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* texto */
+.modal-body {
+  padding: 18px 22px 22px;
+  overflow-y: auto;
+}
+.modal-zone-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #2f6a45;
+  margin-bottom: 6px;
+}
+.modal-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: -.02em;
+}
+.modal-desc {
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .2s;
+  z-index: 10;
+}
+.modal-close:hover { background: rgba(0,0,0,.7); }
+
+/* ── LEYENDA ── */
+.pi-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pi-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .2s;
+  border: 1.5px solid transparent;
+}
+.pi-legend-item:hover {
+  box-shadow: 0 3px 12px rgba(47,106,69,.2);
+  transform: translateY(-1px);
+  border-color: rgba(47,106,69,.3);
+}
+.pi-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #2f6a45;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .pi-page { padding: 70px 0 40px; }
+  .modal-body { padding: 14px 16px 18px; }
+  .modal-title { font-size: 18px; }
+}
+</style>
+</head>
+<body data-page="plano">
+<div id="site-nav"></div>
+
+<div class="pi-page">
+  <div class="pi-wrap">
+
+    <div class="pi-header">
+      <h1>Plano del predio</h1>
+      <p>Centro de Eventos Elías Regules · Av. Bolivia 2455, Montevideo</p>
+      <span class="pi-hint"><i class="ti ti-map-pin"></i> Hacé click en los puntos para ver cada espacio</span>
+    </div>
+
+    <!-- MAPA -->
+    <div class="pi-map-wrap" id="piMap">
+      <img src="img/plano.png" alt="Plano del predio Elías Regules" draggable="false" />
+
+      <!-- HOTSPOT 1: Pabellón -->
+      <div class="hs" style="left:8.2%;top:41%" data-hs="0">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Pabellón</div>
+      </div>
+
+      <!-- HOTSPOT 2: Jardines -->
+      <div class="hs" style="left:21%;top:52%" data-hs="1">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Jardines</div>
+      </div>
+
+      <!-- HOTSPOT 3: Salón Principal -->
+      <div class="hs" style="left:27%;top:40%" data-hs="2">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Salón principal</div>
+      </div>
+
+      <!-- HOTSPOT 4: Escenario -->
+      <div class="hs" style="left:32%;top:30%" data-hs="3">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Escenario</div>
+      </div>
+
+      <!-- HOTSPOT 5: Backstage / Producción -->
+      <div class="hs" style="left:43%;top:32%" data-hs="4">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Producción</div>
+      </div>
+
+      <!-- HOTSPOT 6: Estacionamiento -->
+      <div class="hs" style="left:67%;top:50%" data-hs="5">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <div class="hs-label">Estacionamiento</div>
+      </div>
+    </div>
+
+    <!-- LEYENDA -->
+    <div class="pi-legend" id="piLegend">
+      <div class="pi-legend-item" data-hs="0"><span class="pi-legend-dot"></span>Pabellón</div>
+      <div class="pi-legend-item" data-hs="1"><span class="pi-legend-dot"></span>Jardines</div>
+      <div class="pi-legend-item" data-hs="2"><span class="pi-legend-dot"></span>Salón principal</div>
+      <div class="pi-legend-item" data-hs="3"><span class="pi-legend-dot"></span>Escenario</div>
+      <div class="pi-legend-item" data-hs="4"><span class="pi-legend-dot"></span>Producción</div>
+      <div class="pi-legend-item" data-hs="5"><span class="pi-legend-dot"></span>Estacionamiento</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="pi-modal-bg" id="piModalBg">
+  <div class="pi-modal" id="piModal">
+    <div class="modal-photo-wrap">
+      <img id="modalMainPhoto" src="" alt="" />
+      <button class="modal-photo-nav prev" id="modalPrev"><i class="ti ti-chevron-left"></i></button>
+      <button class="modal-photo-nav next" id="modalNext"><i class="ti ti-chevron-right"></i></button>
+      <span class="modal-photo-count" id="modalCount"></span>
+      <button class="modal-close" id="modalClose"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-thumbs" id="modalThumbs"></div>
+    <div class="modal-body">
+      <p class="modal-zone-tag" id="modalTag"></p>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="site.js"></script>
+<script>
+var HOTSPOTS = [
+  {
+    tag: "Espacio independiente",
+    title: "Pabellón",
+    desc: "Espacio independiente del salón principal. Ideal para activaciones paralelas, producción técnica o como área de recepción exclusiva.",
+    photos: ["img/hall-1.jpg","img/hall-2.jpg","img/day-roche-13.jpg"]
+  },
+  {
+    tag: "Exterior",
+    title: "Jardines y parque",
+    desc: "5 hectáreas de jardines privados para dinámicas al aire libre, coffee breaks y networking. Siempre en exclusividad.",
+    photos: ["img/nature.jpg","img/predio-day.jpg","img/quebra-2.jpg","img/quebra-3.jpg","img/day-anda.jpg"]
+  },
+  {
+    tag: "Interior",
+    title: "Salón principal",
+    desc: "El corazón del predio. Capacidad para hasta 1.500 personas en formato teatro, banquete o cocktail. Acústica diseñada para impactar.",
+    photos: ["img/corp-event-day.jpg","img/day-roche-9.jpg","img/day-itau1.jpg","img/corp-dinner.jpg","img/social-dinner.jpg"]
+  },
+  {
+    tag: "Producción técnica",
+    title: "Escenario y LED walls",
+    desc: "Escenario profesional con pantallas LED, iluminación y sonido calibrado de primer nivel. Infraestructura integrada, sin improvisar.",
+    photos: ["img/stage-blue.jpg","img/hall-blue.jpg","img/lasers.jpg","img/lightart.jpg"]
+  },
+  {
+    tag: "Infraestructura",
+    title: "Área de producción",
+    desc: "Acceso de proveedores, carga y descarga, camerinos y coordinación técnica. Potencia eléctrica para producciones de cualquier escala.",
+    photos: ["img/production.jpg","img/panel-day.jpg","img/day-presi1.jpg","img/presi-2.jpg"]
+  },
+  {
+    tag: "Acceso",
+    title: "Estacionamiento",
+    desc: "Estacionamiento privado dentro del predio para cientos de vehículos. Sin colas, sin terceros, con acceso controlado.",
+    photos: ["img/aerial-1.jpg","img/aerial-2.jpg","img/aerial-3.jpg"]
+  }
+];
+
+var curPhotos = [];
+var curPhoto  = 0;
+var activeDot = null;
+
+function openModal(idx) {
+  var hs = HOTSPOTS[idx];
+  curPhotos = hs.photos;
+  curPhoto  = 0;
+
+  document.getElementById('modalTag').textContent   = hs.tag;
+  document.getElementById('modalTitle').textContent = hs.title;
+  document.getElementById('modalDesc').textContent  = hs.desc;
+
+  // thumbs
+  var thumbsEl = document.getElementById('modalThumbs');
+  thumbsEl.innerHTML = '';
+  hs.photos.forEach(function(src, i) {
+    var d = document.createElement('div');
+    d.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+    d.innerHTML = '<img src="' + src + '" alt="" />';
+    d.dataset.i = i;
+    thumbsEl.appendChild(d);
+  });
+
+  showPhoto(0);
+  document.getElementById('piModalBg').classList.add('open');
+
+  // mark dot active
+  document.querySelectorAll('.hs').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelector('[data-hs="' + idx + '"].hs').classList.add('active');
+}
+
+function showPhoto(i) {
+  curPhoto = (i + curPhotos.length) % curPhotos.length;
+  document.getElementById('modalMainPhoto').src = curPhotos[curPhoto];
+  document.getElementById('modalCount').textContent = (curPhoto + 1) + ' / ' + curPhotos.length;
+  document.querySelectorAll('.modal-thumb').forEach(function(el, j) {
+    el.classList.toggle('active', j === curPhoto);
+  });
+}
+
+function closeModal() {
+  document.getElementById('piModalBg').classList.remove('open');
+  document.querySelectorAll('.hs').forEach(function(el) { el.classList.remove('active'); });
+}
+
+// dot clicks
+document.querySelectorAll('.hs').forEach(function(el) {
+  el.addEventListener('click', function() { openModal(parseInt(el.dataset.hs)); });
+});
+
+// legend clicks
+document.querySelectorAll('.pi-legend-item').forEach(function(el) {
+  el.addEventListener('click', function() { openModal(parseInt(el.dataset.hs)); });
+});
+
+// nav arrows
+document.getElementById('modalPrev').addEventListener('click', function() { showPhoto(curPhoto - 1); });
+document.getElementById('modalNext').addEventListener('click', function() { showPhoto(curPhoto + 1); });
+
+// thumb clicks
+document.getElementById('modalThumbs').addEventListener('click', function(e) {
+  var t = e.target.closest('.modal-thumb');
+  if (t) showPhoto(parseInt(t.dataset.i));
+});
+
+// close
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('piModalBg').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// keyboard
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('piModalBg').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') showPhoto(curPhoto + 1);
+  if (e.key === 'ArrowLeft')  showPhoto(curPhoto - 1);
+  if (e.key === 'Escape') closeModal();
+});
+
+// swipe en modal
+var swipeX = null;
+document.getElementById('piModal').addEventListener('touchstart', function(e) {
+  swipeX = e.touches[0].clientX;
+}, { passive: true });
+document.getElementById('piModal').addEventListener('touchend', function(e) {
+  if (swipeX === null) return;
+  var dx = e.changedTouches[0].clientX - swipeX;
+  if (Math.abs(dx) > 40) dx < 0 ? showPhoto(curPhoto + 1) : showPhoto(curPhoto - 1);
+  swipeX = null;
+}, { passive: true });
+</script>
+</body>
+</html>
