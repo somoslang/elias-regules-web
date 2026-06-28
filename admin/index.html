@@ -83,6 +83,9 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
   box-shadow: 0 1px 4px rgba(0,0,0,.1);
 }
 .gal-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gal-card[draggable="true"] { cursor: grab; }
+.gal-card.dragging { opacity: .35; outline: 2px dashed rgba(255,255,255,.5); }
+.gal-card.drag-over { outline: 3px solid #2f6a45; outline-offset: 2px; }
 .gal-card-overlay {
   position: absolute; inset: 0; background: rgba(0,0,0,.55);
   opacity: 0; transition: opacity .2s;
@@ -517,16 +520,42 @@ function renderGallery() {
 
 function makeCard(foto, i) {
   const card = document.createElement('div'); card.className = 'gal-card'; card.dataset.img = foto.img; card.dataset.alt = foto.alt || '';
+  card.draggable = true;
   card.innerHTML = `
     <span class="gal-card-num">${i + 1}</span>
     <img src="${foto.img}" loading="lazy" />
     <div class="gal-card-overlay">
       <div class="gal-actions">
-        <button class="gal-btn" title="Subir" onclick="moveCard(this,'up')">↑</button>
-        <button class="gal-btn" title="Bajar" onclick="moveCard(this,'dn')">↓</button>
         <button class="gal-btn del" title="Eliminar" onclick="deleteCard(this)">×</button>
       </div>
     </div>`;
+
+  card.addEventListener('dragstart', e => {
+    e.dataTransfer.effectAllowed = 'move';
+    setTimeout(() => card.classList.add('dragging'), 0);
+  });
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+    document.querySelectorAll('#galGrid .gal-card').forEach(c => c.classList.remove('drag-over'));
+    refreshNumbers();
+  });
+  card.addEventListener('dragover', e => {
+    e.preventDefault();
+    const dragging = document.querySelector('.dragging');
+    if (!dragging || dragging === card) return;
+    card.classList.add('drag-over');
+    const grid = document.getElementById('galGrid');
+    const addCard = document.getElementById('galAddCard');
+    const cards = Array.from(grid.querySelectorAll('.gal-card'));
+    const rect = card.getBoundingClientRect();
+    const mid = rect.left + rect.width / 2;
+    if (e.clientX < mid) grid.insertBefore(dragging, card);
+    else grid.insertBefore(dragging, card.nextSibling);
+    grid.appendChild(addCard);
+  });
+  card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+  card.addEventListener('drop', e => { e.preventDefault(); card.classList.remove('drag-over'); });
+
   return card;
 }
 
