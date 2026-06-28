@@ -215,25 +215,112 @@ const PAGES = {
     ]
   },
   corporativo: {
-    label: 'Página Corporativo', preview: '/corporativo.html',
-    groups: [{ title: 'Sección hero', fields: [
-      { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: Eventos que <strong>sorprenden</strong>.' },
-      { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
-    ]}]
+    label: 'Corporativo', preview: '/corporativo.html',
+    groups: [
+      { title: 'Hero', fields: [
+        { key: 'hero_h1',  label: 'Título principal', type: 'text',     hint: 'HTML: <strong>negrita</strong>', full: true },
+        { key: 'hero_sub', label: 'Subtítulo',        type: 'textarea', full: true },
+      ]},
+      { title: 'Formato 01 — Convenciones', fields: [
+        { key: 'fmt1_title', label: 'Título',      type: 'text',     hint: 'HTML permitido', full: true },
+        { key: 'fmt1_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Formato 02 — Lanzamientos', fields: [
+        { key: 'fmt2_title', label: 'Título',      type: 'text',     hint: 'HTML permitido', full: true },
+        { key: 'fmt2_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Formato 03 — Directorio', fields: [
+        { key: 'fmt3_title', label: 'Título',      type: 'text',     hint: 'HTML permitido', full: true },
+        { key: 'fmt3_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Sección intermedia', fields: [
+        { key: 'break_h2', label: 'Titular', type: 'text',     hint: 'HTML: <strong>negrita</strong>', full: true },
+        { key: 'break_p',  label: 'Texto',   type: 'textarea', full: true },
+      ]},
+      { title: 'Infraestructura — Título', fields: [
+        { key: 'infra_h2', label: 'Título de sección', type: 'text', hint: 'HTML: <em>cursiva</em>', full: true },
+      ]},
+      { title: 'Características 1 · 2 · 3', cols: 2, fields: [
+        { key: 'feat1_title', label: 'Caract. 1 — Título',       type: 'text' },
+        { key: 'feat2_title', label: 'Caract. 2 — Título',       type: 'text' },
+        { key: 'feat1_desc',  label: 'Caract. 1 — Descripción',  type: 'textarea' },
+        { key: 'feat2_desc',  label: 'Caract. 2 — Descripción',  type: 'textarea' },
+        { key: 'feat3_title', label: 'Caract. 3 — Título',       type: 'text', full: true },
+        { key: 'feat3_desc',  label: 'Caract. 3 — Descripción',  type: 'textarea', full: true },
+      ]},
+      { title: 'Características 4 · 5 · 6', cols: 2, fields: [
+        { key: 'feat4_title', label: 'Caract. 4 — Título',       type: 'text' },
+        { key: 'feat5_title', label: 'Caract. 5 — Título',       type: 'text' },
+        { key: 'feat4_desc',  label: 'Caract. 4 — Descripción',  type: 'textarea' },
+        { key: 'feat5_desc',  label: 'Caract. 5 — Descripción',  type: 'textarea' },
+        { key: 'feat6_title', label: 'Caract. 6 — Título',       type: 'text', full: true },
+        { key: 'feat6_desc',  label: 'Caract. 6 — Descripción',  type: 'textarea', full: true },
+      ]},
+      { title: 'CTA final', fields: [
+        { key: 'cta_h2', label: 'Título',       type: 'text',     hint: 'HTML: <strong>negrita</strong>', full: true },
+        { key: 'cta_p',  label: 'Descripción',  type: 'textarea', full: true },
+      ]},
+    ]
   },
   social: {
-    label: 'Bodas & Social', preview: '/social.html',
-    groups: [{ title: 'Sección hero', fields: [
-      { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: El día más <em>especial</em>.' },
-      { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
-    ]}]
+    label: 'Bodas & Celebraciones', preview: '/social.html',
+    groups: [
+      { title: 'Hero', fields: [
+        { key: 'hero_h1',  label: 'Título principal', type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'hero_sub', label: 'Subtítulo',        type: 'textarea', full: true },
+      ]},
+      { title: 'Cita introductoria', fields: [
+        { key: 'intro_q', label: 'Texto', type: 'textarea', hint: 'HTML: <em>cursiva</em>', full: true },
+      ]},
+      { title: 'Formato I — Casamientos', fields: [
+        { key: 'fmt1_title', label: 'Título',      type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'fmt1_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Formato II — Fiestas', fields: [
+        { key: 'fmt2_title', label: 'Título',      type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'fmt2_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Formato III — Cenas', fields: [
+        { key: 'fmt3_title', label: 'Título',      type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'fmt3_desc',  label: 'Descripción', type: 'textarea', full: true },
+      ]},
+      { title: 'Sección intermedia', fields: [
+        { key: 'break_h2', label: 'Titular', type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'break_p',  label: 'Texto',   type: 'textarea', full: true },
+      ]},
+      { title: 'Características 1 · 2 · 3', cols: 2, fields: [
+        { key: 'feat1_title', label: 'Caract. 1 — Título',       type: 'text' },
+        { key: 'feat2_title', label: 'Caract. 2 — Título',       type: 'text' },
+        { key: 'feat1_desc',  label: 'Caract. 1 — Descripción',  type: 'textarea' },
+        { key: 'feat2_desc',  label: 'Caract. 2 — Descripción',  type: 'textarea' },
+        { key: 'feat3_title', label: 'Caract. 3 — Título',       type: 'text', full: true },
+        { key: 'feat3_desc',  label: 'Caract. 3 — Descripción',  type: 'textarea', full: true },
+      ]},
+      { title: 'Características 4 · 5 · 6', cols: 2, fields: [
+        { key: 'feat4_title', label: 'Caract. 4 — Título',       type: 'text' },
+        { key: 'feat5_title', label: 'Caract. 5 — Título',       type: 'text' },
+        { key: 'feat4_desc',  label: 'Caract. 4 — Descripción',  type: 'textarea' },
+        { key: 'feat5_desc',  label: 'Caract. 5 — Descripción',  type: 'textarea' },
+        { key: 'feat6_title', label: 'Caract. 6 — Título',       type: 'text', full: true },
+        { key: 'feat6_desc',  label: 'Caract. 6 — Descripción',  type: 'textarea', full: true },
+      ]},
+      { title: 'CTA final', fields: [
+        { key: 'cta_h2', label: 'Título',       type: 'text',     hint: 'HTML: <em>cursiva</em>', full: true },
+        { key: 'cta_p',  label: 'Descripción',  type: 'textarea', full: true },
+      ]},
+    ]
   },
   contacto: {
     label: 'Datos de contacto', preview: '/corp-contacto.html',
-    groups: [{ title: 'Teléfono', cols: 2, fields: [
-      { key: 'phone',      label: 'Número local',         type: 'text', hint: 'Ej: 095 893 475' },
-      { key: 'phone_intl', label: 'Número internacional', type: 'text', hint: 'Ej: +598 95 893 475' },
-    ]}]
+    groups: [
+      { title: 'Teléfono', cols: 2, fields: [
+        { key: 'phone',      label: 'Número local',         type: 'text', hint: 'Ej: 095 893 475' },
+        { key: 'phone_intl', label: 'Internacional (+598)', type: 'text', hint: 'Ej: +598 95 893 475' },
+      ]},
+      { title: 'Plano del predio', fields: [
+        { key: 'plano_url', label: 'URL del archivo (PDF u otro)', type: 'text', hint: 'Dejá vacío para ocultar el botón. Ej: /plano.pdf o un link externo.', full: true },
+      ]},
+    ]
   }
 };
 

@@ -23,18 +23,29 @@ function renderValue(val) {
 }
 
 function processFile(file) {
-  let html = fs.readFileSync(file, 'utf8');
-  html = html.replace(/<!-- cms:([\w.]+) -->[\s\S]*?<!-- \/cms:\1 -->/g, (match, key) => {
+  let text = fs.readFileSync(file, 'utf8');
+
+  // Block replacement: <!-- cms:key -->...<!-- /cms:key --> (HTML files, preserves markers)
+  text = text.replace(/<!-- cms:([\w.]+) -->[\s\S]*?<!-- \/cms:\1 -->/g, (match, key) => {
     const val = get(content, key);
     return val != null
       ? `<!-- cms:${key} -->${renderValue(val)}<!-- /cms:${key} -->`
       : match;
   });
-  fs.writeFileSync(file, html);
+
+  // Inline replacement: {{cms:key}} — injects value directly, no surrounding markers (for JS/attr contexts)
+  text = text.replace(/\{\{cms:([\w.]+)\}\}/g, (match, key) => {
+    const val = get(content, key);
+    return val != null ? String(val) : match;
+  });
+
+  fs.writeFileSync(file, text);
   console.log('  ' + file);
 }
 
-const files = fs.readdirSync('.').filter(f => f.endsWith('.html'));
+const htmlFiles = fs.readdirSync('.').filter(f => f.endsWith('.html'));
+const files = [...htmlFiles, 'site.js'];
+
 console.log('Building...');
 files.forEach(processFile);
 console.log('Done.');

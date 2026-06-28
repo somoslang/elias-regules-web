@@ -1,4 +1,6 @@
 /* Elías Regules — nav + footer por sección */
+var PLANO_URL = '{{cms:contacto.plano_url}}';
+
 (function () {
   // Page fade-in: body starts transparent, fades in via CSS animation
   var siStyle = document.createElement('style');
@@ -14,6 +16,9 @@
     ".nav-logo{display:flex;flex-direction:column;gap:1px;line-height:1;text-decoration:none}" +
     ".nav-logo-name{font-family:'Space Grotesk',sans-serif;font-size:19px;letter-spacing:.14em;font-weight:600;color:var(--ink)}" +
     ".nav-section-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500}" +
+    ".ft-plano-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:9px 15px;border-radius:6px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6);font-size:12px;font-weight:500;text-decoration:none;letter-spacing:.02em;transition:background .2s,border-color .2s,color .2s}" +
+    ".ft-plano-link:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.9)}" +
+    ".ft-plano-link .ti{font-size:15px;opacity:.7}" +
     ".btn-live{position:relative;overflow:hidden}" +
     ".btn-live::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:live-sweep 2.5s ease-in-out infinite}" +
     "@keyframes live-sweep{to{left:160%}}" +
@@ -73,7 +78,9 @@
         '<p style="margin-top:4px">Av. Bolivia 2455<br>Montevideo, Uruguay</p>' +
         '<div class="ft-social" style="margin-top:16px">' +
           '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
-        '</div></div>' +
+        '</div>' +
+        (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
+        '</div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Eventos corporativos</span>' +
         '<span><a href="index.html" style="color:inherit;opacity:.5">← Ver sección Bodas</a></span></div>' +
@@ -133,7 +140,9 @@
         '<p style="margin-top:4px">Av. Bolivia 2455<br>Montevideo, Uruguay</p>' +
         '<div class="ft-social" style="margin-top:16px">' +
           '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
-        '</div></div>' +
+        '</div>' +
+        (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
+        '</div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Bodas &amp; Celebraciones</span>' +
         '<span><a href="index.html" style="color:inherit;opacity:.5">← Ver sección Corporativo</a></span></div>' +
