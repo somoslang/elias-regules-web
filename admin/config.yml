@@ -78,3 +78,43 @@ collections:
           - label: "Subtítulo hero"
             name: "hero_sub"
             widget: "text"
+
+      - name: "corp-galeria"
+        label: "Galería — Corporativo"
+        file: "_content/corp-galeria.json"
+        format: json
+        fields:
+          - label: "Fotos"
+            name: "fotos"
+            widget: "list"
+            label_singular: "Foto"
+            hint: "Subí las fotos y arrastralas para cambiar el orden."
+            fields:
+              - label: "Imagen"
+                name: "img"
+                widget: "image"
+              - label: "Descripción (opcional)"
+                name: "alt"
+                widget: "string"
+                required: false
+                default: ""
+
+      - name: "social-galeria"
+        label: "Galería — Bodas & Celebraciones"
+        file: "_content/social-galeria.json"
+        format: json
+        fields:
+          - label: "Fotos"
+            name: "fotos"
+            widget: "list"
+            label_singular: "Foto"
+            hint: "Subí las fotos y arrastralas para cambiar el orden."
+            fields:
+              - label: "Imagen"
+                name: "img"
+                widget: "image"
+              - label: "Descripción (opcional)"
+                name: "alt"
+                widget: "string"
+                required: false
+                default: ""
