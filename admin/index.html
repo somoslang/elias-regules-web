@@ -882,9 +882,10 @@ function renderPlanoPanel(idx) {
 
   document.getElementById('hs-add-photo-btn').addEventListener('click', () => {
     const fi = document.getElementById('hs-file-input');
+    const capturedIdx = planoSelIdx;
     fi.value = '';
     fi.onchange = async () => {
-      for (const file of Array.from(fi.files)) await uploadHsPhoto(planoSelIdx, file);
+      for (const file of Array.from(fi.files)) await uploadHsPhoto(capturedIdx, file);
       fi.onchange = null;
     };
     fi.click();
@@ -905,9 +906,12 @@ function renderHsPhotos(idx) {
   list.innerHTML = '';
   (hs.photos || []).forEach((src, pi) => {
     const thumb = document.createElement('div'); thumb.className = 'hs-photo-thumb';
-    thumb.innerHTML = `<img src="${src}" alt="" /><button class="hs-photo-del" title="Eliminar">×</button>`;
+    const displaySrc = (hs._previews && hs._previews[src]) || src;
+    thumb.innerHTML = `<img src="${displaySrc}" alt="" /><button class="hs-photo-del" title="Eliminar">×</button>`;
     thumb.querySelector('.hs-photo-del').addEventListener('click', () => {
-      hs.photos.splice(pi, 1); renderHsPhotos(idx);
+      hs.photos.splice(pi, 1);
+      if (hs._previews) delete hs._previews[src];
+      renderHsPhotos(idx);
     });
     list.appendChild(thumb);
   });
@@ -941,14 +945,18 @@ async function uploadHsPhoto(idx, file) {
   try {
     const b64 = await compressImage(file);
     const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase().replace(/\.\w+$/, '.jpg');
+    const serverPath = `/img/${safeName}`;
+    // Show preview immediately without waiting for Netlify deploy
+    if (!planoData[idx]._previews) planoData[idx]._previews = {};
+    planoData[idx]._previews[serverPath] = `data:image/jpeg;base64,${b64}`;
+    planoData[idx].photos.push(serverPath);
+    renderHsPhotos(idx);
     const upRes = await fetch(`/.netlify/functions/cms?path=img/${safeName}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${await getToken()}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: `Foto plano: ${safeName}`, content: b64, branch: 'main' })
     });
     if (!upRes.ok) throw new Error(await upRes.text());
-    planoData[idx].photos.push(`/img/${safeName}`);
-    renderHsPhotos(idx);
   } catch(e) {
     alert('Error al subir: ' + e.message);
   } finally {
@@ -957,7 +965,8 @@ async function uploadHsPhoto(idx, file) {
 }
 
 async function savePlano() {
-  const body    = JSON.stringify(planoData, null, 2) + '\n';
+  const cleanData = planoData.map(({ _previews, ...hs }) => hs);
+  const body    = JSON.stringify(cleanData, null, 2) + '\n';
   const encoded = btoa(unescape(encodeURIComponent(body)));
   const res = await fetch('/.netlify/functions/cms?path=_content/plano-hotspots.json', {
     method: 'PUT',
