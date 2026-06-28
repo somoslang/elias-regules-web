@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin · Elías Regules</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background: #f0ede7; -webkit-font-smoothing: antialiased; }
@@ -145,7 +144,15 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
   <div class="login-card">
     <p class="login-logo">Elías Regules</p>
     <h1 class="login-title">Panel de administración</h1>
-    <p class="login-sub">Editá los textos y galerías del sitio.</p>
+    <div class="field" style="text-align:left;margin-bottom:14px">
+      <label class="field-label" for="login-email">Email</label>
+      <input type="email" id="login-email" placeholder="tu@email.com" autocomplete="email">
+    </div>
+    <div class="field" style="text-align:left;margin-bottom:8px">
+      <label class="field-label" for="login-password">Contraseña</label>
+      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <p id="login-error" style="color:#c0392b;font-size:12px;margin-bottom:12px;min-height:16px"></p>
     <button class="btn-login" id="login-btn">Iniciar sesión →</button>
   </div>
 </div>
@@ -334,35 +341,72 @@ let currentSha  = '';
 let currentMode = 'fields'; // 'fields' | 'gallery'
 let galFotos    = [];       // array en memoria para la galería activa
 
-/* ── Identity ── */
-if (typeof netlifyIdentity === 'undefined') {
-  document.getElementById('login-screen').innerHTML = '<div class="login-card"><p class="login-logo">Elías Regules</p><p style="color:#c0392b;font-size:14px;margin-top:20px">Error: no se pudo cargar el módulo de autenticación. Recargá la página.</p></div>';
-} else {
-  netlifyIdentity.on('init',   user => user ? showApp(user) : showLogin());
-  netlifyIdentity.on('login',  user => { netlifyIdentity.close(); showApp(user); });
-  netlifyIdentity.on('logout', showLogin);
-  netlifyIdentity.init({ APIUrl: 'https://eliasregules.lang.uy/.netlify/identity' });
-
-  document.getElementById('login-btn').onclick  = () => netlifyIdentity.open('login');
-  document.getElementById('logout-btn').onclick = () => netlifyIdentity.logout();
-}
+/* ── Auth (Netlify Identity REST API directo, sin widget) ── */
+const IDENTITY_URL = 'https://eliasregules.lang.uy/.netlify/identity';
+let authToken = sessionStorage.getItem('ni_token') || '';
+let authEmail = sessionStorage.getItem('ni_email') || '';
 
 function showLogin() {
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
 }
-function showApp(user) {
+function showApp(email) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
-  document.getElementById('user-email').textContent = user.email;
-  document.getElementById('user-avatar').textContent = user.email[0].toUpperCase();
+  document.getElementById('user-email').textContent = email;
+  document.getElementById('user-avatar').textContent = email[0].toUpperCase();
   loadPage('index');
 }
-async function getToken() {
-  const user = netlifyIdentity.currentUser();
-  if (!user) return '';
-  try { return await user.jwt(); } catch { return user.token?.access_token ?? ''; }
+async function getToken() { return authToken; }
+
+// Restaurar sesión si hay token guardado
+if (authToken) {
+  showApp(authEmail);
+} else {
+  showLogin();
 }
+
+// Login
+document.getElementById('login-btn').onclick = async () => {
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl    = document.getElementById('login-error');
+  const btn      = document.getElementById('login-btn');
+  errEl.textContent = '';
+  if (!email || !password) { errEl.textContent = 'Completá email y contraseña.'; return; }
+  btn.disabled = true; btn.textContent = 'Entrando…';
+  try {
+    const res = await fetch(`${IDENTITY_URL}/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error_description || `Error ${res.status}`);
+    }
+    const data = await res.json();
+    authToken = data.access_token;
+    authEmail = email;
+    sessionStorage.setItem('ni_token', authToken);
+    sessionStorage.setItem('ni_email', authEmail);
+    showApp(email);
+  } catch(e) {
+    errEl.textContent = e.message;
+    btn.disabled = false; btn.textContent = 'Iniciar sesión →';
+  }
+};
+document.getElementById('login-password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('login-btn').click();
+});
+
+// Logout
+document.getElementById('logout-btn').onclick = () => {
+  authToken = ''; authEmail = '';
+  sessionStorage.removeItem('ni_token');
+  sessionStorage.removeItem('ni_email');
+  showLogin();
+};
 
 /* ── Nav ── */
 document.querySelectorAll('.nav-item').forEach(el => {
