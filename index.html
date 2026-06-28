@@ -146,6 +146,27 @@ body { display: flex; flex-direction: column; overflow: hidden; }
 .avail-btn:hover { background: #f0f0f0; transform: translateY(-2px); }
 .avail-btn::after { content: '↗'; font-size: 13px; }
 
+/* ── SPLASH ── */
+#splash {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #2f6a45;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+  transition: opacity 0.55s cubic-bezier(.4,0,.2,1);
+}
+.splash-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px; font-weight: 500; letter-spacing: .42em;
+  text-transform: uppercase; color: #fff;
+}
+.splash-bar {
+  width: 80px; height: 1px;
+  background: rgba(255,255,255,.2); overflow: hidden;
+}
+.splash-bar-fill {
+  height: 100%; background: rgba(255,255,255,.75);
+  width: 0; transition: width 2.8s cubic-bezier(.4,0,.2,1);
+}
+
 /* MOBILE */
 @media(max-width:640px) {
   html, body { height: auto; }
@@ -165,6 +186,12 @@ body { display: flex; flex-direction: column; overflow: hidden; }
 <link rel="apple-touch-icon" href="logo.png" />
 </head>
 <body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <span class="splash-name">ELÍAS&nbsp;&nbsp;REGULES</span>
+  <div class="splash-bar"><div id="splashFill" class="splash-bar-fill"></div></div>
+</div>
 
 <!-- BARRA SUPERIOR -->
 <div class="top-bar">
@@ -225,6 +252,38 @@ body { display: flex; flex-direction: column; overflow: hidden; }
       }
     });
   }
+
+  // Splash: esperar fotos y disolver
+  (function () {
+    var splash = document.getElementById('splash');
+    var fill   = document.getElementById('splashFill');
+    var done   = false;
+
+    requestAnimationFrame(function () { if (fill) fill.style.width = '82%'; });
+
+    function hideSplash() {
+      if (done) return;
+      done = true;
+      if (fill) { fill.style.transition = 'width 0.18s ease'; fill.style.width = '100%'; }
+      setTimeout(function () {
+        splash.style.opacity = '0';
+        splash.style.pointerEvents = 'none';
+        setTimeout(function () { splash.remove(); }, 580);
+      }, 180);
+    }
+
+    var imgs    = document.querySelectorAll('.choice img');
+    var pending = imgs.length;
+    if (!pending) { hideSplash(); return; }
+
+    function onLoad() { if (--pending <= 0) hideSplash(); }
+    imgs.forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) { onLoad(); }
+      else { img.addEventListener('load', onLoad); img.addEventListener('error', onLoad); }
+    });
+
+    setTimeout(hideSplash, 4000); // fallback máximo
+  })();
 
   // Page transition: card image expands to fill viewport
   (function () {
