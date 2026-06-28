@@ -342,7 +342,7 @@ let currentMode = 'fields'; // 'fields' | 'gallery'
 let galFotos    = [];       // array en memoria para la galería activa
 
 /* ── Auth (Netlify Identity REST API directo, sin widget) ── */
-const IDENTITY_URL = 'https://eliasregules.lang.uy/.netlify/identity';
+const IDENTITY_URL = '/.netlify/identity';
 let authToken = sessionStorage.getItem('ni_token') || '';
 let authEmail = sessionStorage.getItem('ni_email') || '';
 
