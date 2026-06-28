@@ -19,10 +19,7 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
   background: #fff; border-radius: 16px; padding: 56px 48px; text-align: center;
   max-width: 360px; width: 90%; box-shadow: 0 24px 64px rgba(0,0,0,.2);
 }
-.login-logo {
-  font-size: 11px; font-weight: 600; letter-spacing: .32em; color: #2f6a45;
-  text-transform: uppercase; margin-bottom: 20px;
-}
+.login-logo { font-size: 11px; font-weight: 600; letter-spacing: .32em; color: #2f6a45; text-transform: uppercase; margin-bottom: 20px; }
 .login-title { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; letter-spacing: -.02em; }
 .login-sub { font-size: 13px; color: #999; margin-bottom: 36px; line-height: 1.5; }
 .btn-login {
@@ -36,129 +33,108 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
 #app { display: flex; height: 100vh; }
 
 /* SIDEBAR */
-.sidebar {
-  width: 248px; flex-shrink: 0; background: #2f6a45;
-  display: flex; flex-direction: column; overflow: hidden;
-}
-.sidebar-brand {
-  padding: 28px 24px 22px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
-.brand-er {
-  font-size: 11px; font-weight: 700; letter-spacing: .3em;
-  color: #fff; text-transform: uppercase; line-height: 1.5;
-}
-.brand-sub {
-  font-size: 9px; color: rgba(255,255,255,.4); letter-spacing: .2em;
-  text-transform: uppercase; margin-top: 5px;
-}
+.sidebar { width: 248px; flex-shrink: 0; background: #2f6a45; display: flex; flex-direction: column; overflow: hidden; }
+.sidebar-brand { padding: 28px 24px 22px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.brand-er { font-size: 11px; font-weight: 700; letter-spacing: .3em; color: #fff; text-transform: uppercase; line-height: 1.5; }
+.brand-sub { font-size: 9px; color: rgba(255,255,255,.4); letter-spacing: .2em; text-transform: uppercase; margin-top: 5px; }
 .sidebar-nav { flex: 1; padding: 12px 10px; overflow-y: auto; }
-.nav-section-label {
-  font-size: 9px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(255,255,255,.35); padding: 14px 12px 6px;
-}
+.nav-section-label { font-size: 9px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); padding: 14px 12px 6px; }
 .nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px; border-radius: 8px; margin-bottom: 2px;
-  color: rgba(255,255,255,.6); text-decoration: none;
-  font-size: 13px; font-weight: 500; cursor: pointer;
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; margin-bottom: 2px;
+  color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer;
   transition: background .15s, color .15s; user-select: none;
 }
 .nav-item:hover { background: rgba(255,255,255,.08); color: rgba(255,255,255,.9); }
 .nav-item.active { background: rgba(255,255,255,.16); color: #fff; }
 .nav-icon { font-size: 15px; opacity: .7; flex-shrink: 0; }
-.sidebar-footer {
-  padding: 14px 16px; border-top: 1px solid rgba(255,255,255,.1);
-}
-.user-chip {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
-}
-.user-avatar {
-  width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
-}
-.user-email-text {
-  font-size: 11px; color: rgba(255,255,255,.5); white-space: nowrap;
-  overflow: hidden; text-overflow: ellipsis;
-}
-.btn-logout {
-  width: 100%; background: transparent; border: 1px solid rgba(255,255,255,.18);
-  color: rgba(255,255,255,.5); border-radius: 6px; padding: 7px;
-  font-size: 11px; font-family: inherit; cursor: pointer; letter-spacing: .04em;
-  transition: all .15s;
-}
+.sidebar-footer { padding: 14px 16px; border-top: 1px solid rgba(255,255,255,.1); }
+.user-chip { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.user-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.user-email-text { font-size: 11px; color: rgba(255,255,255,.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.btn-logout { width: 100%; background: transparent; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.5); border-radius: 6px; padding: 7px; font-size: 11px; font-family: inherit; cursor: pointer; letter-spacing: .04em; transition: all .15s; }
 .btn-logout:hover { border-color: rgba(255,255,255,.45); color: rgba(255,255,255,.85); }
 
 /* MAIN */
 .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-.main-header {
-  padding: 28px 36px 20px; flex-shrink: 0;
-  display: flex; align-items: flex-end; justify-content: space-between;
-}
+.main-header { padding: 28px 36px 20px; flex-shrink: 0; display: flex; align-items: flex-end; justify-content: space-between; }
 .main-title { font-size: 20px; font-weight: 600; color: #1a1a1a; letter-spacing: -.025em; }
-.preview-btn {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; color: #2f6a45; text-decoration: none; font-weight: 500;
-  border: 1px solid #c5ddd0; border-radius: 6px; padding: 6px 12px;
-  transition: background .15s; letter-spacing: .01em;
-}
+.preview-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #2f6a45; text-decoration: none; font-weight: 500; border: 1px solid #c5ddd0; border-radius: 6px; padding: 6px 12px; transition: background .15s; letter-spacing: .01em; }
 .preview-btn:hover { background: #e8f3ed; }
 .fields-scroll { flex: 1; overflow-y: auto; padding: 0 36px 8px; }
 
 /* FIELD CARDS */
-.field-group {
-  background: #fff; border-radius: 12px; margin-bottom: 14px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  overflow: hidden;
-}
-.group-header {
-  padding: 14px 22px 12px; border-bottom: 1px solid #f0f0f0;
-  display: flex; align-items: center; gap: 8px;
-}
-.group-title {
-  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-  color: #aaa;
-}
+.field-group { background: #fff; border-radius: 12px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); overflow: hidden; }
+.group-header { padding: 14px 22px 12px; border-bottom: 1px solid #f0f0f0; }
+.group-title { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #aaa; }
 .group-body { padding: 18px 22px; display: grid; gap: 16px; }
 .group-body.two-col { grid-template-columns: 1fr 1fr; }
-.field {}
-.field-label {
-  display: block; font-size: 12px; font-weight: 600; color: #444;
-  margin-bottom: 5px; letter-spacing: .01em;
-}
+.field-label { display: block; font-size: 12px; font-weight: 600; color: #444; margin-bottom: 5px; letter-spacing: .01em; }
 .field-hint { font-size: 11px; color: #bbb; margin-bottom: 5px; }
-.field input, .field textarea {
-  width: 100%; border: 1.5px solid #eaeaea; border-radius: 7px;
-  padding: 9px 12px; font-size: 13px; font-family: inherit; color: #1a1a1a;
-  background: #fafafa; outline: none; transition: border-color .15s, background .15s;
-  line-height: 1.4;
-}
-.field input:focus, .field textarea:focus {
-  border-color: #2f6a45; background: #fff;
-  box-shadow: 0 0 0 3px rgba(47,106,69,.08);
-}
+.field input, .field textarea { width: 100%; border: 1.5px solid #eaeaea; border-radius: 7px; padding: 9px 12px; font-size: 13px; font-family: inherit; color: #1a1a1a; background: #fafafa; outline: none; transition: border-color .15s; line-height: 1.4; }
+.field input:focus, .field textarea:focus { border-color: #2f6a45; background: #fff; box-shadow: 0 0 0 3px rgba(47,106,69,.08); }
 .field textarea { resize: vertical; min-height: 72px; }
 
-/* SAVE BAR */
-.save-bar {
-  flex-shrink: 0; padding: 14px 36px;
-  background: #fff; border-top: 1px solid #eee;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+/* ── GALERÍA EDITOR ── */
+.gal-editor { padding: 4px 0 24px; }
+.gal-hint { font-size: 12px; color: #aaa; margin-bottom: 20px; }
+.gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+.gal-card {
+  position: relative; border-radius: 10px; overflow: hidden;
+  background: #eee; aspect-ratio: 4/3;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
 }
+.gal-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gal-card-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  opacity: 0; transition: opacity .2s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+}
+.gal-card:hover .gal-card-overlay { opacity: 1; }
+.gal-actions { display: flex; gap: 6px; }
+.gal-btn {
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3);
+  color: #fff; border-radius: 6px; width: 32px; height: 32px;
+  font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .15s; font-family: inherit;
+}
+.gal-btn:hover { background: rgba(255,255,255,.35); }
+.gal-btn.del { background: rgba(200,40,40,.5); border-color: rgba(255,100,100,.4); }
+.gal-btn.del:hover { background: rgba(200,40,40,.8); }
+.gal-card-num {
+  position: absolute; top: 6px; left: 6px;
+  background: rgba(0,0,0,.55); color: #fff;
+  font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px;
+}
+
+/* Add card */
+.gal-add-card {
+  aspect-ratio: 4/3; border-radius: 10px;
+  border: 2px dashed #c5ddd0; background: #f6faf7;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer; transition: border-color .2s, background .2s; color: #2f6a45;
+}
+.gal-add-card:hover { border-color: #2f6a45; background: #eaf3ed; }
+.gal-add-icon { font-size: 28px; line-height: 1; }
+.gal-add-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.gal-add-hint { font-size: 10px; color: #aaa; }
+
+/* Upload progress */
+.gal-upload-card {
+  aspect-ratio: 4/3; border-radius: 10px; background: #f0f0f0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+}
+.gal-upload-name { font-size: 11px; color: #888; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gal-progress-bar { width: 80%; height: 3px; background: #ddd; border-radius: 2px; overflow: hidden; }
+.gal-progress-fill { height: 100%; background: #2f6a45; width: 0%; transition: width .3s; }
+
+/* SAVE BAR */
+.save-bar { flex-shrink: 0; padding: 14px 36px; background: #fff; border-top: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .save-status { font-size: 13px; color: #888; }
 .save-status.ok { color: #2f6a45; font-weight: 500; }
 .save-status.err { color: #c0392b; }
-.btn-save {
-  background: #2f6a45; color: #fff; border: none; border-radius: 8px;
-  padding: 11px 24px; font-size: 13px; font-weight: 600; letter-spacing: .04em;
-  cursor: pointer; font-family: inherit; transition: background .2s, opacity .2s;
-  white-space: nowrap;
-}
+.btn-save { background: #2f6a45; color: #fff; border: none; border-radius: 8px; padding: 11px 24px; font-size: 13px; font-weight: 600; letter-spacing: .04em; cursor: pointer; font-family: inherit; transition: background .2s, opacity .2s; white-space: nowrap; }
 .btn-save:hover { background: #256038; }
 .btn-save:disabled { opacity: .5; cursor: not-allowed; }
-
-/* Loading */
 .loading-msg { padding: 36px; color: #bbb; font-size: 13px; }
 </style>
 </head>
@@ -169,37 +145,29 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
   <div class="login-card">
     <p class="login-logo">Elías Regules</p>
     <h1 class="login-title">Panel de administración</h1>
-    <p class="login-sub">Editá los textos del sitio web fácilmente.</p>
+    <p class="login-sub">Editá los textos y galerías del sitio.</p>
     <button class="btn-login" id="login-btn">Iniciar sesión →</button>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none">
-
   <aside class="sidebar">
     <div class="sidebar-brand">
       <div class="brand-er">Elías<br>Regules</div>
       <div class="brand-sub">Panel de contenido</div>
     </div>
-
     <nav class="sidebar-nav">
       <div class="nav-section-label">Páginas</div>
-      <div class="nav-item active" data-page="index">
-        <span class="nav-icon">🏠</span> Inicio
-      </div>
-      <div class="nav-item" data-page="corporativo">
-        <span class="nav-icon">🏢</span> Corporativo
-      </div>
-      <div class="nav-item" data-page="social">
-        <span class="nav-icon">💍</span> Bodas &amp; Social
-      </div>
+      <div class="nav-item active" data-page="index"><span class="nav-icon">🏠</span> Inicio</div>
+      <div class="nav-item" data-page="corporativo"><span class="nav-icon">🏢</span> Corporativo</div>
+      <div class="nav-item" data-page="social"><span class="nav-icon">💍</span> Bodas &amp; Social</div>
+      <div class="nav-section-label">Galerías</div>
+      <div class="nav-item" data-page="corp-galeria"><span class="nav-icon">📷</span> Galería Corporativo</div>
+      <div class="nav-item" data-page="social-galeria"><span class="nav-icon">🌿</span> Galería Bodas</div>
       <div class="nav-section-label">General</div>
-      <div class="nav-item" data-page="contacto">
-        <span class="nav-icon">📞</span> Datos de contacto
-      </div>
+      <div class="nav-item" data-page="contacto"><span class="nav-icon">📞</span> Datos de contacto</div>
     </nav>
-
     <div class="sidebar-footer">
       <div class="user-chip">
         <div class="user-avatar" id="user-avatar">?</div>
@@ -224,85 +192,65 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
   </main>
 </div>
 
+<input type="file" id="gal-file-input" accept="image/*" multiple style="display:none">
+
 <script>
-/* ── Configuración de campos ── */
+/* ── Config páginas de texto ── */
 const PAGES = {
   index: {
-    label: 'Página de inicio',
-    preview: '/',
+    label: 'Página de inicio', preview: '/',
     groups: [
-      {
-        title: 'Card · Corporativo',
-        cols: 2,
-        fields: [
-          { key: 'corp_tag',   label: 'Etiqueta',  type: 'text' },
-          { key: 'corp_cta',   label: 'Botón',     type: 'text' },
-          { key: 'corp_title', label: 'Título',    type: 'text', full: true },
-          { key: 'corp_sub',   label: 'Subtítulo', type: 'text', full: true },
-        ]
-      },
-      {
-        title: 'Card · Bodas & Celebraciones',
-        cols: 2,
-        fields: [
-          { key: 'social_tag',   label: 'Etiqueta',  type: 'text' },
-          { key: 'social_cta',   label: 'Botón',     type: 'text' },
-          { key: 'social_title', label: 'Título',    type: 'text', full: true },
-          { key: 'social_sub',   label: 'Subtítulo', type: 'text', full: true },
-        ]
-      }
+      { title: 'Card · Corporativo', cols: 2, fields: [
+        { key: 'corp_tag',   label: 'Etiqueta',  type: 'text' },
+        { key: 'corp_cta',   label: 'Botón',     type: 'text' },
+        { key: 'corp_title', label: 'Título',    type: 'text', full: true },
+        { key: 'corp_sub',   label: 'Subtítulo', type: 'text', full: true },
+      ]},
+      { title: 'Card · Bodas & Celebraciones', cols: 2, fields: [
+        { key: 'social_tag',   label: 'Etiqueta',  type: 'text' },
+        { key: 'social_cta',   label: 'Botón',     type: 'text' },
+        { key: 'social_title', label: 'Título',    type: 'text', full: true },
+        { key: 'social_sub',   label: 'Subtítulo', type: 'text', full: true },
+      ]}
     ]
   },
   corporativo: {
-    label: 'Página Corporativo',
-    preview: '/corporativo.html',
-    groups: [
-      {
-        title: 'Sección hero',
-        fields: [
-          { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: Eventos que <strong>sorprenden</strong>.' },
-          { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
-        ]
-      }
-    ]
+    label: 'Página Corporativo', preview: '/corporativo.html',
+    groups: [{ title: 'Sección hero', fields: [
+      { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: Eventos que <strong>sorprenden</strong>.' },
+      { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
+    ]}]
   },
   social: {
-    label: 'Bodas & Social',
-    preview: '/social.html',
-    groups: [
-      {
-        title: 'Sección hero',
-        fields: [
-          { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: El día más <em>especial</em>.' },
-          { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
-        ]
-      }
-    ]
+    label: 'Bodas & Social', preview: '/social.html',
+    groups: [{ title: 'Sección hero', fields: [
+      { key: 'hero_h1',  label: 'Titular principal', type: 'text',     hint: 'HTML permitido — ej: El día más <em>especial</em>.' },
+      { key: 'hero_sub', label: 'Subtítulo',         type: 'textarea' },
+    ]}]
   },
   contacto: {
-    label: 'Datos de contacto',
-    preview: '/corp-contacto.html',
-    groups: [
-      {
-        title: 'Teléfono',
-        cols: 2,
-        fields: [
-          { key: 'phone',      label: 'Número local',         type: 'text', hint: 'Ej: 095 893 475' },
-          { key: 'phone_intl', label: 'Número internacional', type: 'text', hint: 'Ej: +598 95 893 475' },
-        ]
-      }
-    ]
+    label: 'Datos de contacto', preview: '/corp-contacto.html',
+    groups: [{ title: 'Teléfono', cols: 2, fields: [
+      { key: 'phone',      label: 'Número local',         type: 'text', hint: 'Ej: 095 893 475' },
+      { key: 'phone_intl', label: 'Número internacional', type: 'text', hint: 'Ej: +598 95 893 475' },
+    ]}]
   }
+};
+
+const GAL_PAGES = {
+  'corp-galeria':   { label: 'Galería — Corporativo',          preview: '/corp-galeria.html' },
+  'social-galeria': { label: 'Galería — Bodas & Celebraciones', preview: '/social-galeria.html' },
 };
 
 let currentPage = 'index';
 let currentSha  = '';
+let currentMode = 'fields'; // 'fields' | 'gallery'
+let galFotos    = [];       // array en memoria para la galería activa
 
-/* ── Identity — registrar handlers ANTES de init ── */
-netlifyIdentity.on('init', user => user ? showApp(user) : showLogin());
-netlifyIdentity.on('login', user => { netlifyIdentity.close(); showApp(user); });
+/* ── Identity ── */
+netlifyIdentity.on('init',   user => user ? showApp(user) : showLogin());
+netlifyIdentity.on('login',  user => { netlifyIdentity.close(); showApp(user); });
 netlifyIdentity.on('logout', showLogin);
-
 netlifyIdentity.init({ APIUrl: 'https://eliasregules.lang.uy/.netlify/identity' });
 
 document.getElementById('login-btn').onclick  = () => netlifyIdentity.open('login');
@@ -312,7 +260,6 @@ function showLogin() {
   document.getElementById('login-screen').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
 }
-
 function showApp(user) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
@@ -320,10 +267,7 @@ function showApp(user) {
   document.getElementById('user-avatar').textContent = user.email[0].toUpperCase();
   loadPage('index');
 }
-
-function getToken() {
-  return netlifyIdentity.currentUser()?.token?.access_token ?? '';
-}
+function getToken() { return netlifyIdentity.currentUser()?.token?.access_token ?? ''; }
 
 /* ── Nav ── */
 document.querySelectorAll('.nav-item').forEach(el => {
@@ -334,121 +278,244 @@ document.querySelectorAll('.nav-item').forEach(el => {
   });
 });
 
-/* ── Load ── */
+/* ── Router ── */
 async function loadPage(page) {
   currentPage = page;
-  const cfg = PAGES[page];
-  document.getElementById('main-title').textContent = cfg.label;
-  document.getElementById('preview-btn').href = cfg.preview;
-  document.getElementById('save-status').textContent = '';
-  document.getElementById('save-status').className = 'save-status';
-  document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg">Cargando…</p>';
+  setStatus('');
 
+  if (GAL_PAGES[page]) {
+    currentMode = 'gallery';
+    document.getElementById('main-title').textContent = GAL_PAGES[page].label;
+    document.getElementById('preview-btn').href = GAL_PAGES[page].preview;
+    await loadGallery(page);
+  } else {
+    currentMode = 'fields';
+    const cfg = PAGES[page];
+    document.getElementById('main-title').textContent = cfg.label;
+    document.getElementById('preview-btn').href = cfg.preview;
+    await loadFields(page, cfg);
+  }
+}
+
+/* ── TEXT FIELDS ── */
+async function loadFields(page, cfg) {
+  document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg">Cargando…</p>';
   try {
-    const res = await fetch(`/.netlify/git/github/contents/_content/${page}.json`, {
-      headers: { Authorization: `Bearer ${getToken()}` }
-    });
+    const res  = await fetch(`/.netlify/git/github/contents/_content/${page}.json`, { headers: { Authorization: `Bearer ${getToken()}` } });
     if (!res.ok) throw new Error(res.status);
     const meta = await res.json();
     currentSha = meta.sha;
     const data = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g, '')))));
     renderFields(cfg, data);
-  } catch (e) {
-    document.getElementById('fields-scroll').innerHTML =
-      '<p class="loading-msg" style="color:#c0392b">Error al cargar. Recargá la página.</p>';
+  } catch {
+    document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg" style="color:#c0392b">Error al cargar. Recargá la página.</p>';
   }
 }
 
-/* ── Render ── */
 function renderFields(cfg, data) {
   const scroll = document.getElementById('fields-scroll');
   scroll.innerHTML = '';
-
   cfg.groups.forEach(group => {
-    const card = document.createElement('div');
-    card.className = 'field-group';
-
-    const header = document.createElement('div');
-    header.className = 'group-header';
-    header.innerHTML = `<div class="group-title">${group.title}</div>`;
-    card.appendChild(header);
-
+    const card = document.createElement('div'); card.className = 'field-group';
+    card.innerHTML = `<div class="group-header"><div class="group-title">${group.title}</div></div>`;
     const body = document.createElement('div');
     body.className = group.cols === 2 ? 'group-body two-col' : 'group-body';
-
     group.fields.forEach(f => {
-      const wrap = document.createElement('div');
-      wrap.className = 'field';
+      const wrap = document.createElement('div'); wrap.className = 'field';
       if (f.full) wrap.style.gridColumn = '1 / -1';
-
-      const label = document.createElement('label');
-      label.className = 'field-label';
-      label.textContent = f.label;
-      wrap.appendChild(label);
-
-      if (f.hint) {
-        const hint = document.createElement('div');
-        hint.className = 'field-hint';
-        hint.textContent = f.hint;
-        wrap.appendChild(hint);
-      }
-
+      wrap.innerHTML = `<label class="field-label">${f.label}</label>${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}`;
       const input = f.type === 'textarea'
         ? Object.assign(document.createElement('textarea'), { rows: 3 })
         : Object.assign(document.createElement('input'), { type: 'text' });
-
-      input.value = data[f.key] ?? '';
-      input.dataset.key = f.key;
-      wrap.appendChild(input);
-      body.appendChild(wrap);
+      input.value = data[f.key] ?? ''; input.dataset.key = f.key;
+      wrap.appendChild(input); body.appendChild(wrap);
     });
-
-    card.appendChild(body);
-    scroll.appendChild(card);
+    card.appendChild(body); scroll.appendChild(card);
   });
+}
+
+/* ── GALLERY ── */
+async function loadGallery(page) {
+  document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg">Cargando galería…</p>';
+  try {
+    const res  = await fetch(`/.netlify/git/github/contents/_content/${page}.json`, { headers: { Authorization: `Bearer ${getToken()}` } });
+    if (!res.ok) throw new Error(res.status);
+    const meta = await res.json();
+    currentSha = meta.sha;
+    const data = JSON.parse(decodeURIComponent(escape(atob(meta.content.replace(/\n/g, '')))));
+    galFotos = data.fotos || [];
+    renderGallery();
+  } catch {
+    document.getElementById('fields-scroll').innerHTML = '<p class="loading-msg" style="color:#c0392b">Error al cargar. Recargá la página.</p>';
+  }
+}
+
+function renderGallery() {
+  const scroll = document.getElementById('fields-scroll');
+  scroll.innerHTML = '';
+
+  const editor = document.createElement('div'); editor.className = 'gal-editor';
+  editor.innerHTML = '<p class="gal-hint">Subí fotos, reordenalas y guardá. El sitio se actualiza en ~30 segundos.</p>';
+
+  const grid = document.createElement('div'); grid.className = 'gal-grid'; grid.id = 'galGrid';
+
+  galFotos.forEach((foto, i) => {
+    grid.appendChild(makeCard(foto, i));
+  });
+
+  // Add card
+  const addCard = document.createElement('div'); addCard.className = 'gal-add-card'; addCard.id = 'galAddCard';
+  addCard.innerHTML = '<div class="gal-add-icon">+</div><div class="gal-add-label">Agregar fotos</div><div class="gal-add-hint">JPG · hasta 4 MB c/u</div>';
+  addCard.onclick = () => document.getElementById('gal-file-input').click();
+  grid.appendChild(addCard);
+
+  editor.appendChild(grid);
+  scroll.appendChild(editor);
+}
+
+function makeCard(foto, i) {
+  const card = document.createElement('div'); card.className = 'gal-card'; card.dataset.img = foto.img; card.dataset.alt = foto.alt || '';
+  card.innerHTML = `
+    <span class="gal-card-num">${i + 1}</span>
+    <img src="${foto.img}" loading="lazy" />
+    <div class="gal-card-overlay">
+      <div class="gal-actions">
+        <button class="gal-btn" title="Subir" onclick="moveCard(this,'up')">↑</button>
+        <button class="gal-btn" title="Bajar" onclick="moveCard(this,'dn')">↓</button>
+        <button class="gal-btn del" title="Eliminar" onclick="deleteCard(this)">×</button>
+      </div>
+    </div>`;
+  return card;
+}
+
+function moveCard(btn, dir) {
+  const card  = btn.closest('.gal-card');
+  const grid  = document.getElementById('galGrid');
+  const cards = Array.from(grid.querySelectorAll('.gal-card'));
+  const idx   = cards.indexOf(card);
+  const addCard = document.getElementById('galAddCard');
+  if (dir === 'up' && idx > 0)              grid.insertBefore(card, cards[idx - 1]);
+  if (dir === 'dn' && idx < cards.length-1) grid.insertBefore(cards[idx + 1], card);
+  // Ensure add button stays last
+  grid.appendChild(addCard);
+  refreshNumbers();
+}
+
+function deleteCard(btn) {
+  if (!confirm('¿Eliminar esta foto de la galería?')) return;
+  btn.closest('.gal-card').remove();
+  refreshNumbers();
+}
+
+function refreshNumbers() {
+  document.querySelectorAll('#galGrid .gal-card').forEach((c, i) => {
+    c.querySelector('.gal-card-num').textContent = i + 1;
+  });
+}
+
+/* ── Upload ── */
+document.getElementById('gal-file-input').addEventListener('change', async function () {
+  const files = Array.from(this.files);
+  this.value = '';
+  for (const file of files) {
+    await uploadPhoto(file);
+  }
+});
+
+async function uploadPhoto(file) {
+  const grid    = document.getElementById('galGrid');
+  const addCard = document.getElementById('galAddCard');
+  if (!grid) return;
+
+  // Progress placeholder
+  const placeholder = document.createElement('div'); placeholder.className = 'gal-upload-card';
+  placeholder.innerHTML = `<div class="gal-upload-name">${file.name}</div><div class="gal-progress-bar"><div class="gal-progress-fill" id="prog-${file.name.replace(/\W/g,'_')}"></div></div>`;
+  grid.insertBefore(placeholder, addCard);
+
+  const progEl = placeholder.querySelector('.gal-progress-fill');
+
+  try {
+    // Read as base64
+    const b64 = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload  = e => res(e.target.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+    if (progEl) progEl.style.width = '40%';
+
+    const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase();
+
+    // Upload to GitHub via Git Gateway
+    const upRes = await fetch(`/.netlify/git/github/contents/img/${safeName}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `Foto: ${safeName}`, content: b64, branch: 'main' })
+    });
+    if (!upRes.ok) throw new Error(await upRes.text());
+    if (progEl) progEl.style.width = '100%';
+
+    const imgPath = `/img/${safeName}`;
+    const newCard = makeCard({ img: imgPath, alt: '' }, document.querySelectorAll('#galGrid .gal-card').length);
+    grid.insertBefore(newCard, placeholder);
+    placeholder.remove();
+    refreshNumbers();
+
+  } catch (e) {
+    placeholder.innerHTML = `<div class="gal-upload-name" style="color:#c0392b">Error al subir</div>`;
+    setTimeout(() => placeholder.remove(), 3000);
+  }
 }
 
 /* ── Save ── */
 document.getElementById('save-btn').onclick = async () => {
-  const btn    = document.getElementById('save-btn');
-  const status = document.getElementById('save-status');
-
-  btn.disabled = true;
-  btn.textContent = 'Guardando…';
-  status.textContent = '';
-  status.className = 'save-status';
-
-  const newData = {};
-  document.querySelectorAll('[data-key]').forEach(el => { newData[el.dataset.key] = el.value; });
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true; btn.textContent = 'Guardando…'; setStatus('');
 
   try {
-    const body = JSON.stringify(newData, null, 2) + '\n';
-    const encoded = btoa(unescape(encodeURIComponent(body)));
-
-    const res = await fetch(`/.netlify/git/github/contents/_content/${currentPage}.json`, {
-      method: 'PUT',
-      headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: `Admin: ${PAGES[currentPage].label}`,
-        content: encoded,
-        sha: currentSha,
-        branch: 'main',
-      })
-    });
-
-    if (!res.ok) throw new Error(await res.text());
-    const result = await res.json();
-    currentSha = result.content.sha;
-    status.textContent = '✓ Guardado. El sitio se actualiza en ~20 segundos.';
-    status.className = 'save-status ok';
+    if (currentMode === 'gallery') {
+      await saveGallery();
+    } else {
+      await saveFields();
+    }
+    setStatus('ok', '✓ Guardado. El sitio se actualiza en ~30 segundos.');
   } catch (e) {
-    status.textContent = '✗ Error al guardar. Intentá de nuevo.';
-    status.className = 'save-status err';
+    setStatus('err', '✗ Error al guardar. Intentá de nuevo.');
   }
-
-  btn.disabled = false;
-  btn.textContent = 'Guardar cambios';
+  btn.disabled = false; btn.textContent = 'Guardar cambios';
 };
+
+async function saveFields() {
+  const newData = {};
+  document.querySelectorAll('[data-key]').forEach(el => { newData[el.dataset.key] = el.value; });
+  const body    = JSON.stringify(newData, null, 2) + '\n';
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+  const res = await fetch(`/.netlify/git/github/contents/_content/${currentPage}.json`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: `Admin: ${PAGES[currentPage].label}`, content: encoded, sha: currentSha, branch: 'main' })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  currentSha = (await res.json()).content.sha;
+}
+
+async function saveGallery() {
+  const fotos = Array.from(document.querySelectorAll('#galGrid .gal-card')).map(c => ({ img: c.dataset.img, alt: c.dataset.alt || '' }));
+  const body    = JSON.stringify({ fotos }, null, 2) + '\n';
+  const encoded = btoa(unescape(encodeURIComponent(body)));
+  const res = await fetch(`/.netlify/git/github/contents/_content/${currentPage}.json`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: `Galería actualizada`, content: encoded, sha: currentSha, branch: 'main' })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  currentSha = (await res.json()).content.sha;
+}
+
+function setStatus(type, msg) {
+  const el = document.getElementById('save-status');
+  el.textContent = msg || ''; el.className = 'save-status' + (type ? ' ' + type : '');
+}
 </script>
 </body>
 </html>
