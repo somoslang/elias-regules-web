@@ -199,9 +199,11 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
     '<p style="margin-top:4px">Av. Bolivia 2455<br>Montevideo, Uruguay</p>' +
     '<div class="ft-social" style="margin-top:16px">' +
     '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
+    '</div>' +
+    (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
     '</div></div>' +
     "</div>" +
-    '<div class="ft-bottom"><span>© 2026 Elías Regules · Centro de eventos</span><span>Diseño · prototipo</span></div>' +
+    '<div class="ft-bottom"><span>© 2026 Elías Regules · Centro de eventos</span></div>' +
     "</div></footer>";
 
   injectNavFooter(navG, footerG);
