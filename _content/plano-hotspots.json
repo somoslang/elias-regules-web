@@ -6,7 +6,11 @@
     "desc": "Espacio independiente del salón principal. Ideal para activaciones paralelas, producción técnica o como área de recepción exclusiva.",
     "x": 8.2,
     "y": 41,
-    "photos": ["/img/hall-1.jpg", "/img/hall-2.jpg", "/img/day-roche-13.jpg"]
+    "photos": [
+      "/img/hall-1.jpg",
+      "/img/hall-2.jpg",
+      "/img/day-roche-13.jpg"
+    ]
   },
   {
     "label": "Jardines",
@@ -15,7 +19,13 @@
     "desc": "5 hectáreas de jardines privados para dinámicas al aire libre, coffee breaks y networking. Siempre en exclusividad.",
     "x": 21,
     "y": 52,
-    "photos": ["/img/nature.jpg", "/img/predio-day.jpg", "/img/quebra-2.jpg", "/img/quebra-3.jpg", "/img/day-anda.jpg"]
+    "photos": [
+      "/img/nature.jpg",
+      "/img/predio-day.jpg",
+      "/img/quebra-2.jpg",
+      "/img/quebra-3.jpg",
+      "/img/day-anda.jpg"
+    ]
   },
   {
     "label": "Salón principal",
@@ -24,7 +34,13 @@
     "desc": "El corazón del predio. Capacidad para hasta 1.500 personas en formato teatro, banquete o cocktail. Acústica diseñada para impactar.",
     "x": 27,
     "y": 40,
-    "photos": ["/img/corp-event-day.jpg", "/img/day-roche-9.jpg", "/img/day-itau1.jpg", "/img/corp-dinner.jpg", "/img/social-dinner.jpg"]
+    "photos": [
+      "/img/corp-event-day.jpg",
+      "/img/day-roche-9.jpg",
+      "/img/day-itau1.jpg",
+      "/img/corp-dinner.jpg",
+      "/img/social-dinner.jpg"
+    ]
   },
   {
     "label": "Escenario",
@@ -33,7 +49,12 @@
     "desc": "Escenario profesional con pantallas LED, iluminación y sonido calibrado de primer nivel. Infraestructura integrada, sin improvisar.",
     "x": 32,
     "y": 30,
-    "photos": ["/img/stage-blue.jpg", "/img/hall-blue.jpg", "/img/lasers.jpg", "/img/lightart.jpg"]
+    "photos": [
+      "/img/stage-blue.jpg",
+      "/img/hall-blue.jpg",
+      "/img/lasers.jpg",
+      "/img/lightart.jpg"
+    ]
   },
   {
     "label": "Producción",
@@ -42,15 +63,22 @@
     "desc": "Acceso de proveedores, carga y descarga, camerinos y coordinación técnica. Potencia eléctrica para producciones de cualquier escala.",
     "x": 43,
     "y": 32,
-    "photos": ["/img/production.jpg", "/img/panel-day.jpg", "/img/day-presi1.jpg", "/img/presi-2.jpg"]
+    "photos": [
+      "/img/production.jpg",
+      "/img/panel-day.jpg",
+      "/img/day-presi1.jpg",
+      "/img/presi-2.jpg"
+    ]
   },
   {
-    "label": "Estacionamiento",
+    "label": "Fachada",
     "tag": "Acceso",
-    "title": "Estacionamiento",
-    "desc": "Estacionamiento privado dentro del predio para cientos de vehículos. Sin colas, sin terceros, con acceso controlado.",
-    "x": 67,
-    "y": 50,
-    "photos": ["/img/aerial-1.jpg", "/img/aerial-2.jpg", "/img/aerial-3.jpg"]
+    "title": "Fachada",
+    "desc": "",
+    "x": 56.6,
+    "y": 48.1,
+    "photos": [
+      "/img/1782679123921-_dsf3180.jpg"
+    ]
   }
 ]
