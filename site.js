@@ -157,6 +157,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
     { id: "corporativo", label: "Corporativo", href: "corporativo.html" },
     { id: "social",      label: "Bodas",        href: "social.html" },
     { id: "galeria",     label: "Galería",      href: "galeria.html" },
+    { id: "recorrido",   label: "Recorrido",    href: "recorrido.html" },
     { id: "contacto",    label: "Contacto",     href: "contacto.html" },
   ];
   var menuLinksG =
