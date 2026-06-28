@@ -79,7 +79,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
         '<div class="ft-social" style="margin-top:16px">' +
           '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
         '</div>' +
-        (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
+        (PLANO_URL ? '<a href="' + PLANO_URL + '" download="Plano - Centro de Evento Elías Regules.pdf" target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
         '</div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Eventos corporativos</span>' +
@@ -141,7 +141,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
         '<div class="ft-social" style="margin-top:16px">' +
           '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
         '</div>' +
-        (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
+        (PLANO_URL ? '<a href="' + PLANO_URL + '" download="Plano - Centro de Evento Elías Regules.pdf" target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
         '</div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Bodas &amp; Celebraciones</span>' +
@@ -200,7 +200,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
     '<div class="ft-social" style="margin-top:16px">' +
     '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
     '</div>' +
-    (PLANO_URL ? '<a href="' + PLANO_URL + '" download target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
+    (PLANO_URL ? '<a href="' + PLANO_URL + '" download="Plano - Centro de Evento Elías Regules.pdf" target="_blank" rel="noopener" class="ft-plano-link"><i class="ti ti-file-download"></i> Descargar plano del predio</a>' : '') +
     '</div></div>' +
     "</div>" +
     '<div class="ft-bottom"><span>© 2026 Elías Regules · Centro de eventos</span></div>' +
