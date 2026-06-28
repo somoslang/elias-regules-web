@@ -6,6 +6,13 @@
 <title>Admin · Elías Regules</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // Apunta al dominio de Netlify donde está configurado Identity
+  // (necesario cuando el site corre en dominio personalizado)
+  if (window.netlifyIdentity) {
+    netlifyIdentity.init({ APIUrl: 'https://elias-regules.netlify.app/.netlify/identity' });
+  }
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background: #f0ede7; -webkit-font-smoothing: antialiased; }
