@@ -34,6 +34,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
     var corpLinks = [
       { href: "corporativo.html#corp-formatos", label: "Formatos" },
       { href: "corp-galeria.html",              label: "Galería" },
+      { href: "plano-interactivo.html",         label: "Plano" },
       { href: "corp-contacto.html",             label: "Contacto" },
     ];
     var menuHtml = corpLinks.map(function (p) {
@@ -66,6 +67,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
         '<a href="corporativo.html#corp-formatos">Formatos</a>' +
         '<a href="corporativo.html">Infraestructura</a>' +
         '<a href="corp-galeria.html">Galería</a>' +
+        '<a href="plano-interactivo.html">Plano interactivo</a>' +
         '<a href="corp-contacto.html">Contacto</a></div>' +
       '<div><h4>Formatos</h4>' +
         '<a href="corporativo.html#corp-formatos">Convenciones</a>' +
@@ -96,6 +98,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
       { href: "social.html#b-lugar",      label: "El lugar" },
       { href: "social.html#b-tipos",      label: "Celebraciones" },
       { href: "social-galeria.html",      label: "Galería" },
+      { href: "plano-interactivo.html",   label: "Plano" },
       { href: "social-contacto.html",     label: "Contacto" },
     ];
     var menuHtmlB = bodasLinks.map(function (p) {
@@ -128,6 +131,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
         '<a href="social.html#b-lugar">El lugar</a>' +
         '<a href="social.html#b-tipos">Celebraciones</a>' +
         '<a href="social-galeria.html">Galería</a>' +
+        '<a href="plano-interactivo.html">Plano interactivo</a>' +
         '<a href="social-contacto.html">Contacto</a></div>' +
       '<div><h4>Celebraciones</h4>' +
         '<a href="social.html#b-tipos">Casamientos</a>' +
