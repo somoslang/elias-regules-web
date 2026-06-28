@@ -72,8 +72,7 @@
         '<a href="tel:095893475">095 893 475</a>' +
         '<p style="margin-top:4px">Av. Bolivia 2455<br>Montevideo, Uruguay</p>' +
         '<div class="ft-social" style="margin-top:16px">' +
-          '<a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
-          '<a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>' +
+          '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
         '</div></div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Eventos corporativos</span>' +
@@ -133,8 +132,7 @@
         '<a href="tel:095893475">095 893 475</a>' +
         '<p style="margin-top:4px">Av. Bolivia 2455<br>Montevideo, Uruguay</p>' +
         '<div class="ft-social" style="margin-top:16px">' +
-          '<a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
-          '<a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>' +
+          '<a href="https://www.instagram.com/elias.regules/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>' +
         '</div></div>' +
       '</div>' +
       '<div class="ft-bottom"><span>© 2026 Elías Regules · Bodas &amp; Celebraciones</span>' +
