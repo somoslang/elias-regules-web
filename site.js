@@ -41,7 +41,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
-    var btnContent = '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequear disponibilidad</a>';
+    var btnContent = '<a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequear disponibilidad</a>';
 
     var nav =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
@@ -105,7 +105,7 @@ var PLANO_URL = '{{cms:contacto.plano_url}}';
       return '<a href="' + p.href + '">' + p.label + "</a>";
     }).join("");
 
-    var btnContentB = '<a href="https://eliasregules.lang.uy/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequear disponibilidad</a>';
+    var btnContentB = '<a href="https://elias-regules.vercel.app/disponibilidad" target="_blank" rel="noopener" class="avail-btn' + (current === "contacto" ? ' btn-live' : '') + '">Chequear disponibilidad</a>';
 
     var navB =
       '<header class="nav" id="siteNav"><div class="wrap nav-inner">' +
