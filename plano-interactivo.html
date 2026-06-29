@@ -78,7 +78,7 @@
 .pi-map-left {
   flex-shrink: 0;
   width: 28%;
-  background: #f0ede8;
+  background: #fff;
   min-height: 200px;
 }
 .pi-map-wrap {
@@ -94,25 +94,32 @@
   height: auto;
 }
 
-/* ── ZOOM CONTROLS ── */
+/* ── ZOOM CONTROLS — siempre visibles como overlay ── */
+.pi-map-section {
+  position: relative;
+}
 .pi-zoom-controls {
+  position: absolute;
+  bottom: 14px;
+  right: 30px;
+  z-index: 20;
   display: flex;
   gap: 6px;
-  justify-content: flex-end;
-  margin-top: 10px;
 }
 .pi-zoom-btn {
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   border: 1.5px solid rgba(47,106,69,.3);
-  background: #fff;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: #2f6a45;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: background .15s, border-color .15s;
-  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
   line-height: 1;
   font-family: inherit;
 }
@@ -373,8 +380,14 @@
 
 @media (max-width: 640px) {
   .pi-page { padding: 70px 0 40px; }
+  .pi-map-section { padding: 0 10px; }
+  .pi-map-left { display: none; }
+  .pi-map-scroll { touch-action: pan-x pan-y; }
+  .pi-zoom-controls { bottom: 10px; right: 18px; }
+  .pi-zoom-btn { width: 44px; height: 44px; font-size: 24px; }
   .modal-body { padding: 14px 16px 18px; }
   .modal-title { font-size: 18px; }
+  .modal-photo-wrap { height: 220px; }
 }
 </style>
 </head>
