@@ -378,11 +378,13 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 1024px) {
+  .pi-map-left { display: none; }
+  .pi-map-scroll { touch-action: pan-x pan-y; }
+}
 @media (max-width: 640px) {
   .pi-page { padding: 70px 0 40px; }
   .pi-map-section { padding: 0 10px; }
-  .pi-map-left { display: none; }
-  .pi-map-scroll { touch-action: pan-x pan-y; }
   .pi-zoom-controls { bottom: 10px; right: 18px; }
   .pi-zoom-btn { width: 44px; height: 44px; font-size: 24px; }
   .modal-body { padding: 14px 16px 18px; }
