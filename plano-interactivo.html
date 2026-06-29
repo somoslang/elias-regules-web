@@ -63,11 +63,28 @@
 }
 
 /* ── MAP CONTAINER ── */
-.pi-map-wrap {
-  position: relative;
+.pi-map-scroll {
+  overflow: auto;
   border-radius: 16px;
-  overflow: hidden;
   box-shadow: 0 4px 40px rgba(0,0,0,.12);
+  position: relative;
+}
+.pi-map-inner {
+  display: flex;
+  width: 100%;
+  min-width: 100%;
+  transition: width .35s ease;
+}
+.pi-map-left {
+  flex-shrink: 0;
+  width: 28%;
+  background: #f0ede8;
+  min-height: 200px;
+}
+.pi-map-wrap {
+  flex: 1;
+  position: relative;
+  overflow: visible;
   background: #fff;
   user-select: none;
 }
@@ -76,6 +93,31 @@
   width: 100%;
   height: auto;
 }
+
+/* ── ZOOM CONTROLS ── */
+.pi-zoom-controls {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.pi-zoom-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(47,106,69,.3);
+  background: #fff;
+  color: #2f6a45;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, border-color .15s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  line-height: 1;
+  font-family: inherit;
+}
+.pi-zoom-btn:hover { background: #eaf3ed; border-color: #2f6a45; }
+.pi-zoom-btn:disabled { opacity: .35; cursor: not-allowed; }
 
 /* ── HOTSPOTS ── */
 .hs {
@@ -352,8 +394,17 @@
 
   <!-- MAPA — full width -->
   <div class="pi-map-section">
-    <div class="pi-map-wrap" id="piMap">
-      <img src="img/plano.png" alt="Plano del predio Elías Regules" draggable="false" />
+    <div class="pi-map-scroll">
+      <div class="pi-map-inner" id="piMapInner">
+        <div class="pi-map-left"></div>
+        <div class="pi-map-wrap" id="piMap">
+          <img src="img/plano.png" alt="Plano del predio Elías Regules" draggable="false" />
+        </div>
+      </div>
+    </div>
+    <div class="pi-zoom-controls">
+      <button class="pi-zoom-btn" id="zoomOut" title="Alejar">−</button>
+      <button class="pi-zoom-btn" id="zoomIn"  title="Acercar">+</button>
     </div>
   </div>
 
@@ -491,6 +542,23 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft')  showPhoto(curPhoto - 1);
   if (e.key === 'Escape') closeModal();
 });
+
+// zoom
+var zoomLevel = 100;
+var ZOOM_STEP = 25;
+var ZOOM_MIN  = 100;
+var ZOOM_MAX  = 300;
+
+function setZoom(level) {
+  zoomLevel = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, level));
+  document.getElementById('piMapInner').style.width = zoomLevel + '%';
+  document.getElementById('zoomOut').disabled = zoomLevel <= ZOOM_MIN;
+  document.getElementById('zoomIn').disabled  = zoomLevel >= ZOOM_MAX;
+}
+
+document.getElementById('zoomIn').addEventListener('click', function() { setZoom(zoomLevel + ZOOM_STEP); });
+document.getElementById('zoomOut').addEventListener('click', function() { setZoom(zoomLevel - ZOOM_STEP); });
+setZoom(100);
 
 // swipe en modal
 var swipeX = null;
