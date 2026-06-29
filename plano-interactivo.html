@@ -21,9 +21,13 @@
   min-height: 100vh;
 }
 .pi-wrap {
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 24px;
+}
+.pi-map-section {
+  padding: 0 16px;
+  margin-bottom: 28px;
 }
 .pi-header {
   text-align: center;
@@ -344,15 +348,20 @@
       <span class="pi-hint"><i class="ti ti-map-pin"></i> Hacé click en los puntos para ver cada espacio</span>
     </div>
 
-    <!-- MAPA -->
+  </div>
+
+  <!-- MAPA — full width -->
+  <div class="pi-map-section">
     <div class="pi-map-wrap" id="piMap">
       <img src="img/plano.png" alt="Plano del predio Elías Regules" draggable="false" />
     </div>
-
-    <!-- LEYENDA -->
-    <div class="pi-legend" id="piLegend"></div>
-
   </div>
+
+  <!-- LEYENDA -->
+  <div class="pi-wrap">
+    <div class="pi-legend" id="piLegend"></div>
+  </div>
+
 </div>
 
 <!-- MODAL -->
