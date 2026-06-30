@@ -547,7 +547,7 @@ function renderGallery() {
 
   // Add card
   const addCard = document.createElement('div'); addCard.className = 'gal-add-card'; addCard.id = 'galAddCard';
-  addCard.innerHTML = '<div class="gal-add-icon">+</div><div class="gal-add-label">Agregar fotos</div><div class="gal-add-hint">JPG · hasta 4 MB c/u</div>';
+  addCard.innerHTML = '<div class="gal-add-icon">+</div><div class="gal-add-label">Agregar fotos</div><div class="gal-add-hint">JPG · se optimizan automáticamente</div>';
   addCard.onclick = () => document.getElementById('gal-file-input').click();
   grid.appendChild(addCard);
 
