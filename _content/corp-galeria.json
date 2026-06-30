@@ -51,6 +51,38 @@
     {
       "img": "/img/day-roche-5.jpg",
       "alt": ""
+    },
+    {
+      "img": "/img/embassy-eeuu-exterior-1.jpg",
+      "alt": "Embajada de EEUU - fachada iluminada"
+    },
+    {
+      "img": "/img/embassy-eeuu-exterior-2.jpg",
+      "alt": "Embajada de EEUU - exterior nocturno"
+    },
+    {
+      "img": "/img/embassy-eeuu-salon.jpg",
+      "alt": "Embajada de EEUU - salón principal"
+    },
+    {
+      "img": "/img/embassy-eeuu-escenario.jpg",
+      "alt": "Embajada de EEUU - escenario con pantalla LED"
+    },
+    {
+      "img": "/img/embassy-eeuu-ceremonia.jpg",
+      "alt": "Embajada de EEUU - ceremonia oficial"
+    },
+    {
+      "img": "/img/embassy-eeuu-banderines.jpg",
+      "alt": "Embajada de EEUU - decoración interior"
+    },
+    {
+      "img": "/img/embassy-eeuu-exhibicion.jpg",
+      "alt": "Embajada de EEUU - exhibición"
+    },
+    {
+      "img": "/img/embassy-eeuu-entrada.jpg",
+      "alt": "Embajada de EEUU - entrada"
     }
   ]
 }
