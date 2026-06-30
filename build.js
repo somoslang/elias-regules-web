@@ -6,6 +6,13 @@ const content = {
   corporativo:    JSON.parse(fs.readFileSync('_content/corporativo.json', 'utf8')),
   social:         JSON.parse(fs.readFileSync('_content/social.json', 'utf8')),
   gal_corp:       JSON.parse(fs.readFileSync('_content/corp-galeria.json', 'utf8')),
+  corp_strip:     (() => {
+    const g = JSON.parse(fs.readFileSync('_content/corp-galeria.json', 'utf8'));
+    const fotos = g.eventos ? g.eventos.flatMap(ev => ev.fotos) : (g.fotos || []);
+    return fotos.slice(0, 5).map((f, i) =>
+      `<a href="corp-galeria.html"${i === 0 ? ' class="cc-gal-main"' : ''}><img src="${f.img}" alt="${f.alt || ''}" /></a>`
+    ).join('\n      ');
+  })(),
   gal_social:     JSON.parse(fs.readFileSync('_content/social-galeria.json', 'utf8')).fotos,
 };
 
