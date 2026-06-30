@@ -155,6 +155,28 @@
           "alt": ""
         }
       ]
+    },
+    {
+      "titulo": "Nuevo evento",
+      "subtitulo": "",
+      "fotos": [
+        {
+          "img": "/img/1782794013563-img_4030.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782794021612-img_4036.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782794017979-img_4032.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782794020043-img_4035.jpg",
+          "alt": ""
+        }
+      ]
     }
   ]
 }
