@@ -643,13 +643,8 @@ async function uploadPhoto(file) {
   const progEl = placeholder.querySelector('.gal-progress-fill');
 
   try {
-    // Read as base64
-    const b64 = await new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload  = e => res(e.target.result.split(',')[1]);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
+    // Compress before upload (canvas → JPEG ≤1500px, q=0.85)
+    const b64 = await compressImage(file);
     if (progEl) progEl.style.width = '40%';
 
     const safeName = Date.now() + '-' + file.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase();
