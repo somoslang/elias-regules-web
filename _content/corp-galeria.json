@@ -63,6 +63,28 @@
           "alt": ""
         }
       ]
+    },
+    {
+      "titulo": "Jornada Roche",
+      "subtitulo": "Agencia Otra Alternativa",
+      "fotos": [
+        {
+          "img": "/img/1782792277102-_dsf3160.jpeg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782792271004-_dsf3157.jpeg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782792286563-_dsf3166.jpeg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782792274841-_dsf3159.jpeg",
+          "alt": ""
+        }
+      ]
     }
   ]
 }
