@@ -190,6 +190,10 @@ html, body { height: 100%; font-family: 'Space Grotesk', sans-serif; background:
 .gal-event-meta .field { flex: 1; }
 .btn-del-event { margin-left: auto; align-self: center; border: 1.5px solid #f0b4b4; background: #fff5f5; color: #c0392b; font-size: 11px; font-weight: 600; font-family: inherit; cursor: pointer; border-radius: 6px; padding: 7px 12px; transition: background .15s; white-space: nowrap; flex-shrink: 0; }
 .btn-del-event:hover { background: #fee; }
+.gal-event-drag-handle { font-size: 14px; color: #bbb; cursor: grab; flex-shrink: 0; line-height: 1; padding: 0 2px; user-select: none; }
+.gal-event-item:hover .gal-event-drag-handle { color: #888; }
+.gal-event-item.dragging { opacity: .35; }
+.gal-event-item.drag-over { outline: 2px solid #2f6a45; outline-offset: -2px; background: #ddeee6; }
 </style>
 </head>
 <body>
@@ -618,17 +622,53 @@ function renderEventSidebar() {
   const list = document.getElementById('galEventsList');
   if (!list) return;
   list.innerHTML = '';
+  let dragSrcIdx = -1;
+
   galEventos.forEach((ev, i) => {
     const item = document.createElement('div');
     item.className = 'gal-event-item' + (i === activeEventIdx ? ' active' : '');
-    item.innerHTML = `<span class="gal-event-item-name">${esc(ev.titulo || 'Sin título')}</span><span class="gal-event-item-count">${ev.fotos.length}</span>`;
-    item.onclick = () => {
+    item.draggable = true;
+    item.innerHTML = `<span class="gal-event-drag-handle" title="Arrastrar para reordenar">⠿</span><span class="gal-event-item-name">${esc(ev.titulo || 'Sin título')}</span><span class="gal-event-item-count">${ev.fotos.length}</span>`;
+
+    item.onclick = (e) => {
+      if (e.target.classList.contains('gal-event-drag-handle')) return;
       if (i === activeEventIdx) return;
       syncCurrentEventPhotos();
       activeEventIdx = i;
       renderEventSidebar();
       renderEventPhotos();
     };
+
+    item.addEventListener('dragstart', e => {
+      dragSrcIdx = i;
+      e.dataTransfer.effectAllowed = 'move';
+      setTimeout(() => item.classList.add('dragging'), 0);
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      list.querySelectorAll('.gal-event-item').forEach(el => el.classList.remove('drag-over'));
+    });
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (dragSrcIdx === i) return;
+      list.querySelectorAll('.gal-event-item').forEach(el => el.classList.remove('drag-over'));
+      item.classList.add('drag-over');
+    });
+    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      const src = dragSrcIdx;
+      if (src === i) return;
+      syncCurrentEventPhotos();
+      const [moved] = galEventos.splice(src, 1);
+      galEventos.splice(i, 0, moved);
+      if      (activeEventIdx === src)                          activeEventIdx = i;
+      else if (src < activeEventIdx && i >= activeEventIdx)    activeEventIdx--;
+      else if (src > activeEventIdx && i <= activeEventIdx)    activeEventIdx++;
+      dragSrcIdx = -1;
+      renderEventSidebar();
+    });
+
     list.appendChild(item);
   });
 }
