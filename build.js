@@ -5,7 +5,7 @@ const content = {
   index:          JSON.parse(fs.readFileSync('_content/index.json', 'utf8')),
   corporativo:    JSON.parse(fs.readFileSync('_content/corporativo.json', 'utf8')),
   social:         JSON.parse(fs.readFileSync('_content/social.json', 'utf8')),
-  gal_corp:       JSON.parse(fs.readFileSync('_content/corp-galeria.json', 'utf8')).fotos,
+  gal_corp:       JSON.parse(fs.readFileSync('_content/corp-galeria.json', 'utf8')),
   gal_social:     JSON.parse(fs.readFileSync('_content/social-galeria.json', 'utf8')).fotos,
 };
 
@@ -14,6 +14,21 @@ function get(obj, path) {
 }
 
 function renderValue(val) {
+  if (val && val.eventos) {
+    return val.eventos.map(ev => {
+      const fotosHtml = ev.fotos.map(f =>
+        `<a><img src="${f.img}" alt="${f.alt || ''}" /></a>`
+      ).join('\n        ');
+      return `<div class="gal-event">
+      <div class="gal-event-header">
+        <h2 class="gal-event-titulo">${ev.titulo}</h2>${ev.subtitulo ? `\n        <p class="gal-event-sub">${ev.subtitulo}</p>` : ''}
+      </div>
+      <div class="gal">
+        ${fotosHtml}
+      </div>
+    </div>`;
+    }).join('\n    ');
+  }
   if (Array.isArray(val)) {
     return val.map(item =>
       `<a><img src="${item.img}" alt="${item.alt || ''}" /></a>`
