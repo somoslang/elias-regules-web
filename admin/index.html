@@ -660,6 +660,8 @@ async function uploadPhoto(file) {
 
     const imgPath = `/img/${safeName}`;
     const newCard = makeCard({ img: imgPath, alt: '' }, document.querySelectorAll('#galGrid .gal-card').length);
+    // Show data-URL preview immediately — Netlify deploy takes ~30s so the real path 404s until then
+    newCard.querySelector('img').src = `data:image/jpeg;base64,${b64}`;
     grid.insertBefore(newCard, placeholder);
     placeholder.remove();
     refreshNumbers();
