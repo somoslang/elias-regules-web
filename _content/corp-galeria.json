@@ -185,6 +185,20 @@
           "alt": ""
         }
       ]
+    },
+    {
+      "titulo": "Evento ITAU",
+      "subtitulo": "Agencia Otra Alternativa",
+      "fotos": [
+        {
+          "img": "/img/1782795346754-whatsapp-image-2024-03-22-at-11.52.36.jpeg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782795348095-whatsapp-image-2024-03-22-at-11.52.57.jpeg",
+          "alt": ""
+        }
+      ]
     }
   ]
 }
