@@ -15,7 +15,7 @@ const content = {
       `<a href="corp-galeria.html"${i === 0 ? ' class="cc-gal-main"' : ''}><img src="${f.img}" alt="${f.alt || ''}" /></a>`
     ).join('\n      ');
   })(),
-  gal_social:     JSON.parse(fs.readFileSync('_content/social-galeria.json', 'utf8')).fotos,
+  gal_social:     JSON.parse(fs.readFileSync('_content/social-galeria.json', 'utf8')),
 };
 
 function get(obj, path) {

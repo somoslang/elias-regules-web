@@ -1,16 +1,22 @@
 {
-  "fotos": [
-    {"img": "/img/aerial-1.jpg", "alt": ""},
-    {"img": "/img/gala-tent.jpg", "alt": ""},
-    {"img": "/img/lasers.jpg", "alt": ""},
-    {"img": "/img/lightart.jpg", "alt": ""},
-    {"img": "/img/social-dinner.jpg", "alt": ""},
-    {"img": "/img/aerial-5.jpg", "alt": ""},
-    {"img": "/img/hall-blue.jpg", "alt": ""},
-    {"img": "/img/corp-dinner.jpg", "alt": ""},
-    {"img": "/img/aerial-3.jpg", "alt": ""},
-    {"img": "/img/production.jpg", "alt": ""},
-    {"img": "/img/aerial-2.jpg", "alt": ""},
-    {"img": "/img/stage-blue.jpg", "alt": ""}
+  "eventos": [
+    {
+      "titulo": "Bodas & Celebraciones",
+      "subtitulo": "",
+      "fotos": [
+        {"img": "/img/aerial-1.jpg", "alt": ""},
+        {"img": "/img/gala-tent.jpg", "alt": ""},
+        {"img": "/img/lasers.jpg", "alt": ""},
+        {"img": "/img/lightart.jpg", "alt": ""},
+        {"img": "/img/social-dinner.jpg", "alt": ""},
+        {"img": "/img/aerial-5.jpg", "alt": ""},
+        {"img": "/img/hall-blue.jpg", "alt": ""},
+        {"img": "/img/corp-dinner.jpg", "alt": ""},
+        {"img": "/img/aerial-3.jpg", "alt": ""},
+        {"img": "/img/production.jpg", "alt": ""},
+        {"img": "/img/aerial-2.jpg", "alt": ""},
+        {"img": "/img/stage-blue.jpg", "alt": ""}
+      ]
+    }
   ]
 }
