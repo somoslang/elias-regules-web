@@ -17,14 +17,6 @@
       "alt": ""
     },
     {
-      "img": "/img/embassy-eeuu-salon.jpg",
-      "alt": "Embajada de EEUU - salón principal"
-    },
-    {
-      "img": "/img/embassy-eeuu-entrada.jpg",
-      "alt": "Embajada de EEUU - entrada"
-    },
-    {
       "img": "/img/1782786193057-_dsf3347.jpeg",
       "alt": ""
     },
@@ -69,11 +61,15 @@
       "alt": ""
     },
     {
-      "img": "/img/1782786216942-_dsf3412.jpeg",
+      "img": "/img/1782786249191-_dsf3450.jpeg",
       "alt": ""
     },
     {
-      "img": "/img/1782786219067-_dsf3418.jpeg",
+      "img": "/img/embassy-eeuu-entrada.jpg",
+      "alt": "Embajada de EEUU - entrada"
+    },
+    {
+      "img": "/img/1782786216942-_dsf3412.jpeg",
       "alt": ""
     },
     {
@@ -81,16 +77,16 @@
       "alt": ""
     },
     {
+      "img": "/img/1782786219067-_dsf3418.jpeg",
+      "alt": ""
+    },
+    {
       "img": "/img/1782786224225-_dsf3423.jpeg",
       "alt": ""
     },
     {
-      "img": "/img/1782786228500-_dsf3433.jpeg",
-      "alt": ""
-    },
-    {
-      "img": "/img/1782786249191-_dsf3450.jpeg",
-      "alt": ""
+      "img": "/img/embassy-eeuu-salon.jpg",
+      "alt": "Embajada de EEUU - salón principal"
     }
   ]
 }
