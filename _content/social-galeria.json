@@ -1,6 +1,36 @@
 {
   "eventos": [
     {
+      "titulo": "Bodas",
+      "subtitulo": "",
+      "fotos": [
+        {
+          "img": "/img/1782917413221-eliasregules_exterior_puerta.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782917425816-foto--613.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782917427952-foto-765.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782917422659-foto--595.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782917432479-eliasregules_saloninterior.jpg",
+          "alt": ""
+        },
+        {
+          "img": "/img/1782917429928-eliasregules_salon_exterior.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
       "titulo": "Fin de año BASF",
       "subtitulo": "Agencia Otra Alternativa",
       "fotos": [
